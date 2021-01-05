@@ -9,17 +9,20 @@
     <div class="main-boxes">
       <section class="new-activity">
         <h2>New Activity</h2>
-        <form class="activity-selector">
-          <h3>Select a category:</h3>
-          <button class="study button"><img src="./assets/study.svg" class="button-image"><br>Study</button>
-          <button class="meditate button"><img src="./assets/meditate.svg" class="button-image"><br>Meditate</button>
-          <button class="exercise button"><img src="./assets/exercise.svg" class="button-image"><br>Exercise</button>
-          <label class="input-label accomplish-label">What would you like to accomplish during this time?</label>
-          <input type="text" class="input-form accomplish-input">
-          <label class="input-label minutes-label">Minutes</label>
-          <input type="number" class="input-form minutes-input">
-          <label class="input-label seconds-label">Seconds</label>
-          <input type="number"><br>
+        <form class="activity-selector">Select a category:
+          <div class="button-row">
+            <button class="study button"><img src="./assets/study.svg" class="button-image"><br>Study</button>
+            <button class="meditate button"><img src="./assets/meditate.svg" class="button-image"><br>Meditate</button>
+            <button class="exercise button"><img src="./assets/exercise.svg" class="button-image"><br>Exercise</button>
+          </div>
+          <label class="input-label">What would you like to accomplish during this time?</label>
+          <input type="text" class="input-form"><br>
+          <div class="time-input">
+            <label class="input-label">Minutes</label>
+            <label class="input-label">Seconds</label><br>
+            <input type="number" class="input-form">
+            <input type="number" class="input-form"><br>
+          </div>
           <button class="start-activity">START ACTIVITY</button>
         </form>
       </section>

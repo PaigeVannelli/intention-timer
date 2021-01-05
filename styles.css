@@ -27,21 +27,13 @@
 }
 
 .new-activity {
-  /* border-right: #46424D; */
+  background-color: #46424D;
 }
 
 .activity-selector {
-  background-color: #46424D;
-  display: grid;
-  grid-template-areas:
-    "a a a"
-    "1b 2b 3b"
-    "c c c"
-    "d d d"
-    "1e 2e 3e"
-    "1f 2f 3f"
-    "g g g";
-    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px;
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -66,36 +58,36 @@
   font-weight: 400;
 }
 
-h3 {
-  grid-area: a;
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  background-color: inherit;
+
 }
 
-.accomplish-label {
-  grid-area: c;
+.input-label{
+  background-color: #46424D;
 }
 
-.accomplish-input {
-  grid-area: d;
+.time-input {
+  background-color: #46424D;
 }
 
-.minutes-label {
-  grid-area: 1e;
-}
-
-.minutes-input {
-  grid-area: 1f;
-}
-
-.seconds-label {
-  grid-area: 3e;
-}
-
-.seconds-input {
-  grid-area: 3f;
+.input-form {
+  background-color: #46424D;
 }
 
 .start-activity {
-  grid-area: g;
+  margin-left: 800px;
+  margin-bottom: 40px;
+  width: 20%;
+  padding: 15px;
+  background-color: #ffffff;
+  font-size: 1.3vw;
+  font-weight: 400;
 }
+
+
+
 
 /* PAST ACTIVITIES BOX */
