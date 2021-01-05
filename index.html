@@ -5,28 +5,28 @@
     <link href="https://fonts.google.com/?query=mont&selection.family=Montserrat:wght@300;400&sidebar.open=true" rel="stylesheet">
   </head>
   <body>
-    <header class="header">
-      <h1>ITENTION TIMER</h1>
-    </header>
-    <section class="new-activity">
-      <h2>New Activity</h2>
-      <form class="activity-selector">
-        <h3>Select a category:</h3>
-        <button class="study"><img src="./assets/study.svg">Study</button>
-        <button class="meditate"><img src="./assets/meditate.svg">Meditate</button>
-        <button class="exercise"><img src="./assets/exercise.svg">Exercise</button><br>
-        <label>What would you like to accomplish during this time?</label><br>
-        <input type="text"><br>
-        <label>Minutes</label><br>
-        <input type="number"><br>
-        <label>Seconds</label><br>
-        <input type="number"><br>
-        <button class="start-activity">START ACTIVITY</button>
-      </form>
-    </section>
-    <section class="past-activity">
-      <h2>Past Activities</h2>
-    </section>
+    <header class="header">ITENTION TIMER</header>
+    <div class="main-boxes">
+      <section class="new-activity">
+        <h2>New Activity</h2>
+        <form class="activity-selector">
+          <h3>Select a category:</h3>
+          <button class="study button"><img src="./assets/study.svg" class="button-image"><br>Study</button>
+          <button class="meditate button"><img src="./assets/meditate.svg" class="button-image"><br>Meditate</button>
+          <button class="exercise button"><img src="./assets/exercise.svg" class="button-image"><br>Exercise</button>
+          <label class="input-label accomplish-label">What would you like to accomplish during this time?</label>
+          <input type="text" class="input-form accomplish-input">
+          <label class="input-label minutes-label">Minutes</label>
+          <input type="number" class="input-form minutes-input">
+          <label class="input-label seconds-label">Seconds</label>
+          <input type="number"><br>
+          <button class="start-activity">START ACTIVITY</button>
+        </form>
+      </section>
+      <section class="past-activity">
+        <h2>Past Activities</h2>
+      </section>
+    </div>
   </body>
   <script type="text/javascript" src="Activity.js"></script>
   <script type="text/javascript" src="main.js"></script>

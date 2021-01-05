@@ -4,14 +4,98 @@
   background-color: #2B2733;
   color: #CBC9CF;
   font-weight: 300;
+  border: none;
+  margin: 0px;
 }
 
 /* HEADER */
 .header {
-  justify-content: center;
+  background-color: #46424D;
+  text-align: center;
+  font-size: 2vw;
+  padding: 1em;
+  height: 15%;
+  border: none;
 }
 
-/* NEW ACTIVITIES BOX */
 
+/* BOXES */
+
+.main-boxes {
+  display: grid;
+  grid-template-columns: 65% 35%;
+}
+
+.new-activity {
+  /* border-right: #46424D; */
+}
+
+.activity-selector {
+  background-color: #46424D;
+  display: grid;
+  grid-template-areas:
+    "a a a"
+    "1b 2b 3b"
+    "c c c"
+    "d d d"
+    "1e 2e 3e"
+    "1f 2f 3f"
+    "g g g";
+    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px;
+}
+
+
+.button-image  {
+  background-color: #46424D;
+  height: 20%;
+  width: 30%;
+}
+
+.button {
+  background-color: #46424D;
+  height: 100px;
+  width: 250px;
+  padding: 0;
+  border: 5px;
+  border-width: medium;
+  border-color: white;
+  border-radius: 3px;
+  border-style: solid;
+  margin: 25px;
+  font-size: 1.3vw;
+  font-weight: 400;
+}
+
+h3 {
+  grid-area: a;
+}
+
+.accomplish-label {
+  grid-area: c;
+}
+
+.accomplish-input {
+  grid-area: d;
+}
+
+.minutes-label {
+  grid-area: 1e;
+}
+
+.minutes-input {
+  grid-area: 1f;
+}
+
+.seconds-label {
+  grid-area: 3e;
+}
+
+.seconds-input {
+  grid-area: 3f;
+}
+
+.start-activity {
+  grid-area: g;
+}
 
 /* PAST ACTIVITIES BOX */
