@@ -4,8 +4,11 @@
   background-color: #2B2733;
   color: #CBC9CF;
   font-weight: 300;
-  border: none;
   margin: 0px;
+}
+
+html {
+  height: 100%;
 }
 
 /* HEADER */
@@ -27,13 +30,19 @@
 }
 
 .new-activity {
-  background-color: #46424D;
+  /* background-color: #46424D; */
+  border-right: 10px solid #46424D;
 }
 
 .activity-selector {
-  background-color: inherit;
+  background-color: #46424D;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  padding: 2em;
+  margin: 20px 40px 20px 20px;
+  border-radius: 10px;
+  border-style: solid #46424D;
 }
 
 
@@ -60,31 +69,37 @@
 
 .button-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: inherit;
 
 }
 
 .input-label{
   background-color: #46424D;
+  margin-left: 70px;
 }
 
 .time-input {
   background-color: #46424D;
+  margin-left: 70px;
 }
 
 .input-form {
   background-color: #46424D;
+  width: ;
+  height: 75%;
 }
 
 .start-activity {
-  margin-left: 800px;
+  margin-left: 875px;
   margin-bottom: 40px;
   width: 20%;
   padding: 15px;
   background-color: #ffffff;
   font-size: 1.3vw;
   font-weight: 400;
+  display: flex;
+  justify-content: flex-end;
 }
 
 
