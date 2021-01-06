@@ -1,4 +1,5 @@
 /* ALL STYLES */
+
 * {
   font-family: "Montserrat", sans-serif;
   background-color: #2B2733;
@@ -7,38 +8,32 @@
   margin: 0px;
 }
 
-html, body {
-  /* height: 100; */
-}
+/* ~~~~~~~~~~~ SECTIONS ~~~~~~~~~*/
 
-/* HEADER */
-.header {
+header {
   background-color: #46424D;
-  text-align: center;
-  font-size: 2vw;
-  padding: 1em;
-  height: 5%;
+  font-size: 1.7em;
+  height: 75px;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-/* BOXES */
-
-.main-boxes {
+.main-sections {
   display: grid;
   grid-template-columns: 65% 35%;
-  /* height: 560px; */
 }
 
 .new-activity {
-  /* background-color: #46424D; */
-  border-right: 10px solid #46424D;
+  border-right: 3px solid #46424D;
   height: 1000px;
 }
 
-.box-header {
-  padding: 15px 0 0 20px;
-  /* border: 5px solid red; */
+.box-title {
+  padding: 35px 0 0 30px;
+  font-weight: 300; 
+  font-size: 1.8em;
 }
 
 .activity-selector {
@@ -46,11 +41,13 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 2em;
-  margin: 10px 40px 20px 20px;
+  padding: 4em;
+  margin: 10px 30px 20px 30px;
   border-radius: 10px;
   border-style: solid #46424D;
 }
+
+/* ~~~~~~BUTTONS~~~~~~~~ */
 
 .selection-header {
   padding: .6em 0 0 0;
@@ -58,13 +55,13 @@ html, body {
   background-color: #46424D;
   color: #FFF;
   font-weight: 400;
-  font-size: large;
+  font-size: 1.4em;
 }
 
 .button-image  {
   background-color: #46424D;
-  height: 24%;
-  width: 36%;
+  height: 33%;
+  width: 45%;
 }
 
 .button {
@@ -75,10 +72,10 @@ html, body {
   border: 5px;
   border-width: medium;
   border-color: white;
-  border-radius: 3px;
+  border-radius: 5px;
   border-style: solid;
   margin: 15px 25px 40px 25px;
-  font-size: 1.3vw;
+  font-size: 1.3em;
   font-weight: 400;
 }
 
@@ -89,12 +86,14 @@ html, body {
 
 }
 
+/* ~~~~~~~~ INPUTS~~~~~~~~~~ */
+
 .input-label{
   background-color: #46424D;
   margin: 20px 0 30px 45px;
   color: #fff;
   font-weight: 400;
-
+  font-size: 1.4em;
 }
 
 .time-input {
@@ -102,16 +101,12 @@ html, body {
   display: grid;
   grid-template-columns: 50% 50%;
   margin: 20px 0 0 0px;
-  /* display: flex;
-  justify-content: space-around; */
-  /* margin-left: 70px; */
 }
 
 .input-form {
   background-color: #46424D;
   margin-left: 45px;
   margin-right: 45px;
-  /* width: ; */
   height: 5%;
   border: none;
   border-bottom: .2em solid white;
@@ -131,8 +126,8 @@ html, body {
 
 .start-activity-button {
   margin: 20px 45px 20px 0;
-  width: 25%;
-  padding: 8px;
+  width: 28%;
+  padding: 10px;
   background-color: #ffffff;
   font-size: 1.3vw;
   font-weight: 400;
