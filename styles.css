@@ -32,7 +32,7 @@ header {
 
 .box-title {
   padding: 35px 0 0 30px;
-  font-weight: 300; 
+  font-weight: 300;
   font-size: 1.8em;
 }
 
@@ -77,6 +77,12 @@ header {
   margin: 15px 25px 40px 25px;
   font-size: 1.3em;
   font-weight: 400;
+  outline: none;
+}
+
+.study-button:focus {
+  border-color: #B3FD78;
+  color: #B3FD78;
 }
 
 .button-row {
