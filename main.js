@@ -31,14 +31,23 @@ function removeColor(button, activeClass) {
 var minutes = document.getElementById("minutes");
 var seconds = document.getElementById("seconds");
 var startActivityButton = document.getElementById("startActivityButton");
-var description = document.getElementById("descriptionInput")
+var description = document.getElementById("descriptionInput");
+var numberInputs = document.getElementById("numberInputs");
 
-startActivityButton.addEventListener("click", handleTime);
+// startActivityButton.addEventListener("click", handleTime);
+
+numberInputs.addEventListener('keydown', function(event) {
+  if (event.target.id === "minutes" || "seconds") {
+    if (event.key === 'e') {
+    event.preventDefault(event)
+    };
+  }
+});
+
 
 function handleTime(event) {
   event.preventDefault(event);
-  if(minutes.value.includes("e")){
-  }
+
   var activity = new Activity(category, description.value, minutes.value, seconds.value)
   console.log(activity)
-}
+};
