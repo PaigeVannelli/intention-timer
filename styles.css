@@ -32,7 +32,7 @@ header {
 
 .box-title {
   padding: 35px 0 0 30px;
-  font-weight: 300; 
+  font-weight: 300;
   font-size: 1.8em;
 }
 
@@ -77,6 +77,47 @@ header {
   margin: 15px 25px 40px 25px;
   font-size: 1.3em;
   font-weight: 400;
+  outline: none;
+}
+
+.study-button {
+  background-image: url("./assets/study.svg");
+  background-repeat: no-repeat;
+  background-size: 1.4em;
+  /* display: flex; */
+  /* justify-content: center; */
+}
+
+.study-button:focus {
+  border-color: #B3FD78;
+  color: #B3FD78;
+  background-image: url("./assets/study-active.svg")
+}
+
+.meditate-button {
+  background-image: url("./assets/meditate.svg");
+  background-repeat: no-repeat;
+  background-size: 1.4em;
+  /* display: flex; */
+  /* justify-content: center; */
+}
+
+.meditate-button:focus {
+  border-color: #C278FD;
+  color: #C278FD;
+  background-image: url("./assets/meditate-active.svg")
+}
+
+.exercise-button {
+  background-image: url("./assets/exercise.svg");
+  background-repeat: no-repeat;
+  background-size: 1.4em;
+}
+
+.exercise-button:focus {
+  border-color: #FD8078;
+  color: #FD8078;
+  background-image: url("./assets/exercise-active.svg")
 }
 
 .button-row {
@@ -107,9 +148,10 @@ header {
   background-color: #46424D;
   margin-left: 45px;
   margin-right: 45px;
-  height: 5%;
+  /* height: 5%; */
   border: none;
   border-bottom: .2em solid white;
+  height: 2em;
 }
 
 .number-inputs {
