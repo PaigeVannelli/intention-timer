@@ -31,14 +31,41 @@ function removeColor(button, activeClass) {
 var minutes = document.getElementById("minutes");
 var seconds = document.getElementById("seconds");
 var startActivityButton = document.getElementById("startActivityButton");
-var description = document.getElementById("descriptionInput")
+var description = document.getElementById("descriptionInput");
+var numberInputs = document.getElementById("numberInputs");
 
-startActivityButton.addEventListener("click", handleTime);
 
-function handleTime(event) {
-  event.preventDefault(event);
-  if(minutes.value.includes("e")){
+
+numberInputs.addEventListener('keydown', function(event) {
+  if (event.target.id === "minutes" || "seconds") {
+    if (event.key === 'e') {
+    event.preventDefault(event)
+    };
   }
+});
+
+startActivityButton.addEventListener("click", startTimer);
+
+var activityForm = document.getElementById("activityForm");
+var timerDisplay = document.getElementById("timerDisplay")
+
+function startTimer(event) {
+  event.preventDefault(event);
+
   var activity = new Activity(category, description.value, minutes.value, seconds.value)
-  console.log(activity)
-}
+  console.log(activity);
+
+  displayTimer();
+  checkInputs(activity);
+};
+
+function checkInputs(activity) {
+  if (activity.category === "" || activity.description === "" || activity.minutes === "" || activity.seconds === "") {
+    console.log(activity)
+  }
+};
+
+function displayTimer() {
+  activityForm.classList.add("hidden");
+  timerDisplay.classList.remove("hidden");
+};
