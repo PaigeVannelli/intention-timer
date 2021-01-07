@@ -2,11 +2,6 @@
 var buttonRow = document.getElementById("buttonRow")
 var category = '';
 
-// buttonRow.addEventListener("click", function(event){
-//   event.preventDefault();
-//   category = event.target.id
-// })
-
 buttonRow.addEventListener("click", function(event){
   if (event.target.id === "studyButton") {
     addColor(studyButton, "study-button-active");
@@ -32,8 +27,6 @@ function addColor(button, activeClass) {
 function removeColor(button, activeClass) {
   button.classList.remove(activeClass)
 }
-
-
 
 var minutes = document.getElementById("minutes");
 var seconds = document.getElementById("seconds");
