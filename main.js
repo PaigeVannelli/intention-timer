@@ -55,8 +55,14 @@ function startTimer(event) {
   var activity = new Activity(category, description.value, minutes.value, seconds.value)
   console.log(activity);
 
-  displayTimer()
+  displayTimer();
+  checkInputs(activity);
+};
 
+function checkInputs(activity) {
+  if (activity.category === "" || activity.description === "" || activity.minutes === "" || activity.seconds === "") {
+    console.log(activity)
+  }
 };
 
 function displayTimer() {
