@@ -34,7 +34,7 @@ var startActivityButton = document.getElementById("startActivityButton");
 var description = document.getElementById("descriptionInput");
 var numberInputs = document.getElementById("numberInputs");
 
-// startActivityButton.addEventListener("click", handleTime);
+
 
 numberInputs.addEventListener('keydown', function(event) {
   if (event.target.id === "minutes" || "seconds") {
@@ -44,10 +44,22 @@ numberInputs.addEventListener('keydown', function(event) {
   }
 });
 
+startActivityButton.addEventListener("click", startTimer);
 
-function handleTime(event) {
+var activityForm = document.getElementById("activityForm");
+var timerDisplay = document.getElementById("timerDisplay")
+
+function startTimer(event) {
   event.preventDefault(event);
 
   var activity = new Activity(category, description.value, minutes.value, seconds.value)
-  console.log(activity)
+  console.log(activity);
+
+  displayTimer()
+
+};
+
+function displayTimer() {
+  activityForm.classList.add("hidden");
+  timerDisplay.classList.remove("hidden");
 };

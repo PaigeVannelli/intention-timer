@@ -7,15 +7,12 @@
   <body>
     <header>INTENTION TIMER</header>
     <div class="main-sections">
-      <section class="new-activity">
+      <section class="new-activity" id="newActivityForm">
         <h2 class="box-title">New Activity</h2>
-        <form class="activity-selector"><div class="selection-header">Select a category:</div>
+        <form class="activity-selector" id="activityForm"><div class="selection-header">Select a category:</div>
           <section class="button-row" id="buttonRow">
-            <!-- <button class="button study-button" id="studyButton"><img src="./assets/study.svg" class="button-image" id="studyButtonImage"><br>Study</button> -->
             <button class="button study-button" id="studyButton">Study</button>
-            <!-- <button class="button meditate-button" id="meditateButton"><img src="./assets/meditate.svg" class="button-image meditate-button-image" id="mediateButtonImage"><br>Meditate</button> -->
             <button class="button meditate-button" id="meditateButton"><br>Meditate</button>
-            <!-- <button class="button exercise-button" id="exerciseButton"><img src="./assets/exercise.svg" class="button-image" id="exerciseButtonImage"><br>Exercise</button> -->
             <button class="button exercise-button" id="exerciseButton"><br>Exercise</button>
           </section>
           <label class="input-label">What would you like to accomplish during this time?</label>
@@ -31,6 +28,9 @@
           <div class="start-activity">
             <button class="start-activity-button" id="startActivityButton">START ACTIVITY</button>
           </div>
+        </form>
+        <form class="activity-selector hidden" id="timerDisplay">
+          <h2 class="string">placeholder</h2>
         </form>
       </section>
       <section class="past-activity">

@@ -47,6 +47,8 @@ header {
   border-style: solid #46424D;
 }
 
+
+
 /* ~~~~~~BUTTONS~~~~~~~~ */
 
 .selection-header {
@@ -180,7 +182,9 @@ header {
   border: none;
 }
 
-
+.hidden {
+  display: none;
+}
 
 
 /* PAST ACTIVITIES BOX */
