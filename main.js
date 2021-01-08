@@ -1,7 +1,16 @@
-
-var buttonRow = document.getElementById("buttonRow")
+// GLOBAL VARIABLES
+var activityForm = document.getElementById("activityForm");
+var boxTitle = document.getElementById("boxTitle");
+var buttonRow = document.getElementById("buttonRow");
 var category = '';
+var description = document.getElementById("descriptionInput");
+var minutes = document.getElementById("minutes");
+var numberInputs = document.getElementById("numberInputs");
+var seconds = document.getElementById("seconds");
+var startActivityButton = document.getElementById("startActivityButton");
+// var timerDisplay = document.getElementById("timerDisplay")
 
+// EVENT LISTENERS
 buttonRow.addEventListener("click", function(event){
   if (event.target.id === "studyButton") {
     addColor(studyButton, "study-button-active");
@@ -18,23 +27,7 @@ buttonRow.addEventListener("click", function(event){
   }
   event.preventDefault();
   category = event.target.id
-})
-
-function addColor(button, activeClass) {
-  button.classList.add(activeClass)
-}
-
-function removeColor(button, activeClass) {
-  button.classList.remove(activeClass)
-}
-
-var minutes = document.getElementById("minutes");
-var seconds = document.getElementById("seconds");
-var startActivityButton = document.getElementById("startActivityButton");
-var description = document.getElementById("descriptionInput");
-var numberInputs = document.getElementById("numberInputs");
-
-
+});
 
 numberInputs.addEventListener('keydown', function(event) {
   if (event.target.id === "minutes" || "seconds") {
@@ -46,46 +39,46 @@ numberInputs.addEventListener('keydown', function(event) {
 
 startActivityButton.addEventListener("click", startTimer);
 
-var activityForm = document.getElementById("activityForm");
-var timerDisplay = document.getElementById("timerDisplay")
-var categoryError = document.getElementById("categoryError");
-var descriptionError = document.getElementById("descriptionError");
-var timeError = document.getElementById("timeError");
-var boxTitle = document.getElementById("boxTitle");
+// FUNCTIONS
+function addColor(button, activeClass) {
+  button.classList.add(activeClass)
+}
+
+function removeColor(button, activeClass) {
+  button.classList.remove(activeClass)
+};
 
 function startTimer(event) {
   event.preventDefault(event);
-
   var activity = new Activity(category, description.value, minutes.value, seconds.value)
-  //console.log(activity);
   checkInputs(activity);
-  //displayTimer();
 };
 
 function checkInputs(activity) {
   if (activity.category === ""){
-    categoryError.classList.remove("hidden")
+    removeHidden(document.getElementById("categoryError"))
   } else if (activity.description === ""){
-    descriptionError.classList.remove("hidden")
+    removeHidden(document.getElementById("descriptionError"))
   } else if (activity.minutes === "" && activity.seconds === ""){
-    timeError.classList.remove("hidden")
+    removeHidden(document.getElementById("timeError"))
   } else {
     displayTimer();
   }
 };
 
+function removeHidden(element) {
+  element.classList.remove("hidden")
+}
+
 function displayTimer() {
   activityForm.classList.add("hidden");
-  timerDisplay.classList.remove("hidden");
+  removeHidden(document.getElementById("timerDisplay"));
   boxTitle.innerText = "Current Activity";
   displayActivityValues();
   changeTimerColor();
 };
 
 function displayActivityValues() {
-  //var minutesCountdown = document.getElementById("minutesCountdown");
-  // var secondsCountdown = document.getElementById("secondsCountdown");
-  // var descriptionHeader = document.getElementById("descriptionHeader");
   if(minutes.value){
     document.getElementById("minutesCountdown").innerText = minutes.value;
   }
@@ -93,10 +86,10 @@ function displayActivityValues() {
     document.getElementById("secondsCountdown").innerText = seconds.value;
   }
   document.getElementById("descriptionHeader").innerText = description.value;
-}
+};
 
 function changeTimerColor() {
   if(category === "studyButton") {
     document.getElementById("startButton").style.borderColor = "#B3FD78";
   }
-}
+};
