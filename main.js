@@ -48,20 +48,28 @@ startActivityButton.addEventListener("click", startTimer);
 
 var activityForm = document.getElementById("activityForm");
 var timerDisplay = document.getElementById("timerDisplay")
+var categoryError = document.getElementById("categoryError");
+var descriptionError = document.getElementById("descriptionError");
+var timeError = document.getElementById("timeError");
 
 function startTimer(event) {
   event.preventDefault(event);
 
   var activity = new Activity(category, description.value, minutes.value, seconds.value)
-  console.log(activity);
-
-  displayTimer();
+  //console.log(activity);
   checkInputs(activity);
+  //displayTimer();
 };
 
 function checkInputs(activity) {
-  if (activity.category === "" || activity.description === "" || activity.minutes === "" || activity.seconds === "") {
-    console.log(activity)
+  if (activity.category === ""){
+    categoryError.classList.remove("hidden")
+  } else if (activity.description === ""){
+    descriptionError.classList.remove("hidden")
+  } else if (activity.minutes === "" && activity.seconds === ""){
+    timeError.classList.remove("hidden")
+  } else {
+    displayTimer();
   }
 };
 

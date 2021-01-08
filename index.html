@@ -15,8 +15,10 @@
             <button class="button meditate-button" id="meditateButton"><br>Meditate</button>
             <button class="button exercise-button" id="exerciseButton"><br>Exercise</button>
           </section>
+          <p class="error-message hidden" id="categoryError"><img class="error-image" src="./assets/warning.svg">A category is required</p>
           <label class="input-label">What would you like to accomplish during this time?</label>
           <input type="text" class="input-form" id="descriptionInput"><br>
+          <p class="error-message hidden" id="descriptionError"><img class="error-image" src="./assets/warning.svg">A description is required</p>
           <div class="time-input">
             <label class="input-label">Minutes</label>
             <label class="input-label">Seconds</label><br>
@@ -25,6 +27,7 @@
             <input type="number" class="input-form" id="minutes">
             <input type="number" class="input-form" id="seconds"><br>
           </section>
+          <p class="error-message hidden" id="timeError"><img class="error-image" src="./assets/warning.svg">Time input is required</p>
           <div class="start-activity">
             <button class="start-activity-button" id="startActivityButton">START ACTIVITY</button>
           </div>
