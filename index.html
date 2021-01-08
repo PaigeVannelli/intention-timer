@@ -8,8 +8,8 @@
     <header>INTENTION TIMER</header>
     <div class="main-sections">
       <section class="new-activity" id="newActivityForm">
-        <h2 class="box-title">New Activity</h2>
-        <form class="activity-selector" id="activityForm"><div class="selection-header">Select a category:</div>
+        <h2 class="box-title" id="boxTitle">New Activity</h2>
+        <form class="activity-selector hidden" id="activityForm"><div class="selection-header">Select a category:</div>
           <section class="button-row" id="buttonRow">
             <button class="button study-button" id="studyButton">Study</button>
             <button class="button meditate-button" id="meditateButton"><br>Meditate</button>
@@ -32,9 +32,11 @@
             <button class="start-activity-button" id="startActivityButton">START ACTIVITY</button>
           </div>
         </form>
-        <form class="activity-selector hidden" id="timerDisplay">
-          <h2 class="string">placeholder</h2>
-        </form>
+        <section class="activity-selector timer-display" id="timerDisplay">
+          <h2 class="description-header">placeholder</h2>
+          <p class="countdown">time</p>
+          <button class="start-button">START</button>
+        </section>
       </section>
       <section class="past-activity">
         <h2 class="box-title">Past Activities</h2>

@@ -197,7 +197,35 @@ header {
   border: none;
 }
 
+/*   TIMER BOX   */
 
+.timer-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.description-header {
+  background-color: #46424D;
+  color: #fff;
+  font-weight: 300;
+  font-size: 1.8em;
+}
+
+.countdown {
+  background-color: #46424D;
+  color: #fff;
+  font-weight: 400;
+  font-size: 5em;
+}
+
+.start-button {
+  background-color: #46424D;
+  height: 22em;
+  width: 22em;
+  border: 4px solid #fff;
+  border-radius: 50%;
+}
 
 .hidden {
   display: none;
