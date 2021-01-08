@@ -158,10 +158,25 @@ header {
   height: 2em;
 }
 
+.error-message {
+ background-color: #46424D;
+ font-size: 1em;
+ font-weight: 400;
+ color: #EFB7EC
+}
+
+.error-image {
+  background-color: #46424D;
+  height: 15px;
+  margin-right: 10px;
+  margin-left: 45px;
+}
+
 .number-inputs {
   display: grid;
   grid-template-columns: 50% 50%;
   background-color: #46424D;
+  grid-template-rows: 50% 50%;
 }
 
 .start-activity {
@@ -181,6 +196,8 @@ header {
   border-radius: 5px;
   border: none;
 }
+
+
 
 .hidden {
   display: none;
