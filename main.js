@@ -51,7 +51,7 @@ var timerDisplay = document.getElementById("timerDisplay")
 var categoryError = document.getElementById("categoryError");
 var descriptionError = document.getElementById("descriptionError");
 var timeError = document.getElementById("timeError");
-// var boxTitle = document.getElementById("boxTitle");
+var boxTitle = document.getElementById("boxTitle");
 
 function startTimer(event) {
   event.preventDefault(event);
@@ -77,5 +77,5 @@ function checkInputs(activity) {
 function displayTimer() {
   activityForm.classList.add("hidden");
   timerDisplay.classList.remove("hidden");
-  // boxTitle.innerText = "Current Activity";
+  boxTitle.innerText = "Current Activity";
 };
