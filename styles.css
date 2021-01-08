@@ -219,6 +219,10 @@ header {
   font-size: 5em;
 }
 
+.timer {
+  display: flex;
+}
+
 .start-button {
   background-color: #46424D;
   height: 10em;
@@ -229,6 +233,8 @@ header {
   color: #FFF;
   margin: 2em 0 3em 0;
 }
+
+
 
 .hidden {
   display: none;
