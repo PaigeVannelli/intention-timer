@@ -221,10 +221,13 @@ header {
 
 .start-button {
   background-color: #46424D;
-  height: 22em;
-  width: 22em;
+  height: 10em;
+  width: 10em;
   border: 4px solid #fff;
   border-radius: 50%;
+  font-size: 1.8em;
+  color: #FFF;
+  margin: 2em 0 3em 0;
 }
 
 .hidden {
