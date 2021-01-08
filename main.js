@@ -78,4 +78,25 @@ function displayTimer() {
   activityForm.classList.add("hidden");
   timerDisplay.classList.remove("hidden");
   boxTitle.innerText = "Current Activity";
+  displayActivityValues();
+  changeTimerColor();
 };
+
+function displayActivityValues() {
+  //var minutesCountdown = document.getElementById("minutesCountdown");
+  // var secondsCountdown = document.getElementById("secondsCountdown");
+  // var descriptionHeader = document.getElementById("descriptionHeader");
+  if(minutes.value){
+    document.getElementById("minutesCountdown").innerText = minutes.value;
+  }
+  if(seconds.value){
+    document.getElementById("secondsCountdown").innerText = seconds.value;
+  }
+  document.getElementById("descriptionHeader").innerText = description.value;
+}
+
+function changeTimerColor() {
+  if(category === "studyButton") {
+    document.getElementById("startButton").style.borderColor = "#B3FD78";
+  }
+}
