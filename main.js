@@ -18,6 +18,10 @@ buttonRow.addEventListener("click", function(event){
     addColor(studyButton, "study-button-active");
     removeColor(meditateButton, "meditate-button-active")
     removeColor(exerciseButton, "exercise-button-active")
+  // if (event.target.id === "studyButton") {
+  //   addColor(studyButton, "study-button-active");
+  //   removeColor(meditateButton, "meditate-button-active")
+  //   removeColor(exerciseButton, "exercise-button-active")
   } else if (event.target.id === "meditateButton") {
     addColor(meditateButton, "meditate-button-active")
     removeColor(studyButton, "study-button-active")
@@ -30,6 +34,18 @@ buttonRow.addEventListener("click", function(event){
   event.preventDefault();
   category = event.target.id
 });
+
+//take the entire thing and pass it into a function
+//if it's exercise button remove meditate etc
+//if it's studybutton remove the other two
+
+function activateButton(type) {
+  if(type === studyButton){
+    addColor(studyButton, "study-button-active");
+    removeColor(meditateButton, "meditate-button-active")
+    removeColor(exerciseButton, "exercise-button-active")
+  }
+}
 
 numberInputs.addEventListener('keydown', function(event) {
   if (event.target.id === "minutes" || "seconds") {
