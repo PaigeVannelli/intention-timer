@@ -132,36 +132,56 @@ function changeTimerColor() {
 
 function logActivity() {
   event.preventDefault(event)
-  console.log("test")
   if (activity.minutes && activity.seconds) {
-    document.getElementById("pastActivity").innerHTML +=
-    `<div class="activity-card">
-      <div class="activity-details">
-        <h4>${activity.category}</h4>
-        <p>${activity.minutes} MIN ${activity.seconds} SEC</p>
-        <p>${activity.description}</p>
-      </div>
-      <div"tiny-box"></div>
-    </div>`
+    changeCardDescription(`${activity.minutes} MIN ${activity.seconds} SEC`)
   } else if (activity.seconds && !activity.minutes) {
-    document.getElementById("pastActivity").innerHTML +=
-    `<div class="activity-card">
-      <div class="activity-details">
-        <h4>${activity.category}</h4>
-        <p>${activity.seconds} SEC</p>
-        <p>${activity.description}</p>
-      </div>
-      <div"tiny-box"></div>
-    </div>`
+    changeCardDescription(`${activity.seconds} SEC`)
   } else if (activity.minutes && !activity.seconds) {
-    document.getElementById("pastActivity").innerHTML +=
-    `<div class="activity-card">
-      <div class="activity-details">
-        <h4>${activity.category}</h4>
-        <p>${activity.minutes} MIN</p>
-        <p>${activity.description}</p>
-      </div>
-      <div"tiny-box"></div>
-    </div>`
+    changeCardDescription(`${activity.minutes} MIN`)
   }
 }
+
+function changeCardDescription(time) {
+  document.getElementById("pastActivity").innerHTML +=
+  `<div class="activity-card">
+    <div class="activity-details">
+      <h4>${activity.category}</h4>
+      <p>${time}</p>
+      <p>${activity.description}</p>
+    </div>
+    <div"tiny-box"></div>
+  </div>`
+}
+
+  // if (activity.minutes && activity.seconds) {
+  //   document.getElementById("pastActivity").innerHTML +=
+  //   `<div class="activity-card">
+  //     <div class="activity-details">
+  //       <h4>${activity.category}</h4>
+  //       <p>${activity.minutes} MIN ${activity.seconds} SEC</p>
+  //       <p>${activity.description}</p>
+  //     </div>
+  //     <div"tiny-box"></div>
+  //   </div>`
+  // } else if (activity.seconds && !activity.minutes) {
+  //   document.getElementById("pastActivity").innerHTML +=
+  //   `<div class="activity-card">
+  //     <div class="activity-details">
+  //       <h4>${activity.category}</h4>
+  //       <p>${activity.seconds} SEC</p>
+  //       <p>${activity.description}</p>
+  //     </div>
+  //     <div"tiny-box"></div>
+  //   </div>`
+  // } else if (activity.minutes && !activity.seconds) {
+  //   document.getElementById("pastActivity").innerHTML +=
+  //   `<div class="activity-card">
+  //     <div class="activity-details">
+  //       <h4>${activity.category}</h4>
+  //       <p>${activity.minutes} MIN</p>
+  //       <p>${activity.description}</p>
+  //     </div>
+  //     <div"tiny-box"></div>
+  //   </div>`
+  // }
+// }
