@@ -10,7 +10,6 @@ var seconds = document.getElementById("seconds");
 var secondsCountdown = document.getElementById("secondsCountdown");
 var startActivityButton = document.getElementById("startActivityButton");
 var startButton = document.getElementById("startButton");
-// var timerDisplay = document.getElementById("timerDisplay")
 
 // EVENT LISTENERS
 buttonRow.addEventListener("click", function(event){
@@ -59,18 +58,16 @@ function startTimer(event) {
 };
 
 function startCountDown() {
-  var secondsInput = parseInt(seconds.value);
+  var secondsInput = parseInt(seconds.value - 1);
   var minutesInput = parseInt(minutes.value);
   var oneSecond = 1;
   var oneMinute = oneSecond * 60;
   var totalTime = (secondsInput * oneSecond) + (minutesInput * oneMinute);
   var timer = setInterval(function() {
-    var displayMinutes = Math.floor(totalTime / 60);
-    var displaySeconds = totalTime % 60;
-    secondsCountdown.innerHTML = displaySeconds;
-    minutesCountdown.innerHTML = displayMinutes;
-    // secondsCountdown.innerHTML = secondsInput;
-    // secondsInput--;
+    var displayMinutes = '00' + Math.floor(totalTime / 60);
+    var displaySeconds = '00' + totalTime % 60;
+    secondsCountdown.innerHTML = displaySeconds.slice(-2)
+    minutesCountdown.innerHTML = displayMinutes.slice(-2);
     totalTime--;
     if(totalTime < 0){
       clearInterval(timer);
@@ -103,17 +100,17 @@ function displayTimer() {
 };
 
 function displayActivityValues() {
-  if(minutes.value){
-    document.getElementById("minutesCountdown").innerText = minutes.value;
-  }
-  if(seconds.value){
-    document.getElementById("secondsCountdown").innerText = seconds.value;
-  }
+  document.getElementById("minutesCountdown").innerText = ("00" + minutes.value).slice(-2);
+  document.getElementById("secondsCountdown").innerText = ("00" + seconds.value).slice(-2);
   document.getElementById("descriptionHeader").innerText = description.value;
 };
 
 function changeTimerColor() {
   if(category === "studyButton") {
     document.getElementById("startButton").style.borderColor = "#B3FD78";
+  } else if (category === "meditateButton") {
+    document.getElementById("startButton").style.borderColor = "#C278FD"
+  } else if (category === "exerciseButton") {
+    document.getElementById("startButton").style.borderColor = "#FD8078"
   }
 };
