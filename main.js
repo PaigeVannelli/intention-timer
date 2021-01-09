@@ -1,4 +1,5 @@
 // GLOBAL VARIABLES
+var activity;
 var activityForm = document.getElementById("activityForm");
 var boxTitle = document.getElementById("boxTitle");
 var buttonRow = document.getElementById("buttonRow");
@@ -10,6 +11,7 @@ var seconds = document.getElementById("seconds");
 var secondsCountdown = document.getElementById("secondsCountdown");
 var startActivityButton = document.getElementById("startActivityButton");
 var startButton = document.getElementById("startButton");
+var logActivityButton = document.getElementById("logActivity");
 
 // EVENT LISTENERS
 buttonRow.addEventListener("click", function(event){
@@ -42,6 +44,8 @@ startActivityButton.addEventListener("click", startTimer);
 
 startButton.addEventListener("click", startCountDown);
 
+logActivityButton.addEventListener("click", logActivity);
+
 // FUNCTIONS
 function addColor(button, activeClass) {
   button.classList.add(activeClass)
@@ -53,7 +57,7 @@ function removeColor(button, activeClass) {
 
 function startTimer(event) {
   event.preventDefault(event);
-  var activity = new Activity(category, description.value, minutes.value, seconds.value)
+  activity = new Activity(category, description.value, minutes.value, seconds.value)
   checkInputs(activity);
 };
 
@@ -77,7 +81,6 @@ function startCountDown() {
     if (totalTime < 0) {
       displayComplete();
       clearInterval(timer);
-      console.log("worked")
     }
   }, 1000)
 };
@@ -126,3 +129,39 @@ function changeTimerColor() {
     document.getElementById("startButton").style.borderColor = "#FD8078"
   }
 };
+
+function logActivity() {
+  event.preventDefault(event)
+  console.log("test")
+  if (activity.minutes && activity.seconds) {
+    document.getElementById("pastActivity").innerHTML +=
+    `<div class="activity-card">
+      <div class="activity-details">
+        <h4>${activity.category}</h4>
+        <p>${activity.minutes} MIN ${activity.seconds} SEC</p>
+        <p>${activity.description}</p>
+      </div>
+      <div"tiny-box"></div>
+    </div>`
+  } else if (activity.seconds && !activity.minutes) {
+    document.getElementById("pastActivity").innerHTML +=
+    `<div class="activity-card">
+      <div class="activity-details">
+        <h4>${activity.category}</h4>
+        <p>${activity.seconds} SEC</p>
+        <p>${activity.description}</p>
+      </div>
+      <div"tiny-box"></div>
+    </div>`
+  } else if (activity.minutes && !activity.seconds) {
+    document.getElementById("pastActivity").innerHTML +=
+    `<div class="activity-card">
+      <div class="activity-details">
+        <h4>${activity.category}</h4>
+        <p>${activity.minutes} MIN</p>
+        <p>${activity.description}</p>
+      </div>
+      <div"tiny-box"></div>
+    </div>`
+  }
+}
