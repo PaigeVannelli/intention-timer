@@ -75,11 +75,17 @@ function startCountDown() {
     minutesCountdown.innerHTML = displayMinutes.slice(-2);
     totalTime--;
     if (totalTime < 0) {
+      displayComplete();
       clearInterval(timer);
-      alert("Your time is up!");
+      console.log("worked")
     }
   }, 1000)
 };
+
+function displayComplete() {
+  removeHidden(document.getElementById("logActivity"));
+  document.getElementById("startButton").innerText = "COMPLETE!";
+}
 
 function checkInputs(activity) {
   if (activity.category === ""){
@@ -94,7 +100,7 @@ function checkInputs(activity) {
 };
 
 function removeHidden(element) {
-  element.classList.remove("hidden")
+  element.classList.remove("hidden");
 }
 
 function displayTimer() {
