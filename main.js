@@ -59,7 +59,12 @@ function startTimer(event) {
 
 function startCountDown() {
   var secondsInput = parseInt(seconds.value - 1);
-  var minutesInput = parseInt(minutes.value);
+  var minutesInput = 0;
+  if (minutes.value === ""){
+    minutesInput = 00;
+  } else {
+    minutesInput = parseInt(minutes.value);
+  }
   var oneSecond = 1;
   var oneMinute = oneSecond * 60;
   var totalTime = (secondsInput * oneSecond) + (minutesInput * oneMinute);
@@ -69,8 +74,9 @@ function startCountDown() {
     secondsCountdown.innerHTML = displaySeconds.slice(-2)
     minutesCountdown.innerHTML = displayMinutes.slice(-2);
     totalTime--;
-    if(totalTime < 0){
+    if (totalTime < 0) {
       clearInterval(timer);
+      alert("Your time is up!");
     }
   }, 1000)
 };
