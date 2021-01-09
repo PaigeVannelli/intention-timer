@@ -5,13 +5,14 @@ var boxTitle = document.getElementById("boxTitle");
 var buttonRow = document.getElementById("buttonRow");
 var category = '';
 var description = document.getElementById("descriptionInput");
+var logActivityButton = document.getElementById("logActivity");
 var minutes = document.getElementById("minutes");
 var numberInputs = document.getElementById("numberInputs");
+var pastActivities = [];
 var seconds = document.getElementById("seconds");
 var secondsCountdown = document.getElementById("secondsCountdown");
 var startActivityButton = document.getElementById("startActivityButton");
 var startButton = document.getElementById("startButton");
-var logActivityButton = document.getElementById("logActivity");
 
 // EVENT LISTENERS
 buttonRow.addEventListener("click", function(event){

@@ -6,7 +6,6 @@
   color: #CBC9CF;
   font-weight: 300;
   margin: 0px;
-  border-radius: 10px;
 }
 
 /* ~~~~~~~~~~~ SECTIONS ~~~~~~~~~*/
@@ -247,35 +246,67 @@ header {
 }
 
 /* PAST ACTIVITIES BOX */
-
-.activity-card {
-  background-color: #46424D;
-  height: 100px;
-  width: 525px;
-  border-radius: 10px;
-}
-
-.activity-details > h4 {
-  font-weight: 400;
-  background-color: #46424D;
-}
-
-.activity-details > p {
-  background-color: #46424D;
-}
-
 .past-activity {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
+
+
+.past-title {
+  margin-left: -223px;
+}
+
+.activity-card {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .7em;
+  background-color: #46424D;
+  height: 10%;
+  width: 90%;
+  border-radius: 10px;
+}
+
+.activity-details {
+  padding: 1em;
+  background-color: #46424D;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.activity-details > p {
+  background-color: #46424D;
+  padding-top: .5em;
+}
+
+.activity-card-styles {
+  border-right: 3px solid red;
+  background-color: #46424D;
+  width: 99%;
+  /* border-radius: 1px; */
+}
+
+
+.activity-card-styles > h4 {
+  font-weight: 400;
+  font-size: 1.1em;
+  background-color: #46424D;
+}
+
+.activity-card-styles > p {
+  background-color: #46424D;
+  font-size: 1.2em;
+}
+
+
 
 /* .past-activity > h2 {
   margin-right: 375px;
 } */
 
-.tiny-box{
-  width: 50px;
-  height: 50px;
+/* .tiny-box{
+  width: 25px;
+  height: 25px;
   background: red;
-}
+} */
