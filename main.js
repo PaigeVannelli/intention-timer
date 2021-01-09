@@ -69,7 +69,7 @@ function startCountDown() {
     var displaySeconds = '0' + totalTime % 60;
     secondsCountdown.innerHTML = displaySeconds.slice(-2)
     minutesCountdown.innerHTML = displayMinutes.slice(-2);
-    //Need to figure out what to do when timer hits zero- need to display 00 by default dislpaying NaNa instead
+    //DO WE EVEN NEED TO DISPLAY DOWN BELOW?? CAN THIS TAKE OVER?
     //minutesCountdown.innerHTML = displayMinutes;
     // secondsCountdown.innerHTML = secondsInput;
     totalTime--;
@@ -106,17 +106,23 @@ function displayTimer() {
 function displayActivityValues() {
     var staticMinutes = "00" + (minutes.value.toString())
     document.getElementById("minutesCountdown").innerText = staticMinutes.slice(-2);
-  // Need to maybe add more zeros to my string once it hit zero it's displaying NA because of slice
-  if (seconds.value < 10 && seconds.value > 0) {
-    document.getElementById("secondsCountdown").innerText = "0" + seconds.value
-  } else {
-    document.getElementById("secondsCountdown").innerText = seconds.value;
-  }
+    var staticSeconds = "00" + (seconds.value.toString())
+    document.getElementById("secondsCountdown").innerText = staticSeconds.slice(-2);
+
+  // if (seconds.value < 10 && seconds.value > 0) {
+  //   document.getElementById("secondsCountdown").innerText = "0" + seconds.value
+  // } else {
+  //   document.getElementById("secondsCountdown").innerText = seconds.value;
+  // }
   document.getElementById("descriptionHeader").innerText = description.value;
 };
 
 function changeTimerColor() {
   if(category === "studyButton") {
     document.getElementById("startButton").style.borderColor = "#B3FD78";
+  } else if (category === "meditateButton") {
+    document.getElementById("startButton").style.borderColor = "#C278FD"
+  } else if (category === "exerciseButton") {
+    document.getElementById("startButton").style.borderColor = "#FD8078"
   }
 };
