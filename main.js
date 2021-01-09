@@ -59,18 +59,19 @@ function startTimer(event) {
 };
 
 function startCountDown() {
-  var secondsInput = parseInt(seconds.value);
+  var secondsInput = parseInt(seconds.value - 1);
   var minutesInput = parseInt(minutes.value);
   var oneSecond = 1;
   var oneMinute = oneSecond * 60;
   var totalTime = (secondsInput * oneSecond) + (minutesInput * oneMinute);
   var timer = setInterval(function() {
-    var displayMinutes = Math.floor(totalTime / 60);
-    var displaySeconds = totalTime % 60;
-    secondsCountdown.innerHTML = displaySeconds;
-    minutesCountdown.innerHTML = displayMinutes;
+    var displayMinutes = '00' + Math.floor(totalTime / 60);
+    var displaySeconds = '0' + totalTime % 60;
+    secondsCountdown.innerHTML = displaySeconds.slice(-2)
+    minutesCountdown.innerHTML = displayMinutes.slice(-2);
+    //Need to figure out what to do when timer hits zero- need to display 00 by default dislpaying NaNa instead
+    //minutesCountdown.innerHTML = displayMinutes;
     // secondsCountdown.innerHTML = secondsInput;
-    // secondsInput--;
     totalTime--;
     if(totalTime < 0){
       clearInterval(timer);
@@ -103,10 +104,12 @@ function displayTimer() {
 };
 
 function displayActivityValues() {
-  if(minutes.value){
-    document.getElementById("minutesCountdown").innerText = minutes.value;
-  }
-  if(seconds.value){
+    var staticMinutes = "00" + (minutes.value.toString())
+    document.getElementById("minutesCountdown").innerText = staticMinutes.slice(-2);
+  // Need to maybe add more zeros to my string once it hit zero it's displaying NA because of slice
+  if (seconds.value < 10 && seconds.value > 0) {
+    document.getElementById("secondsCountdown").innerText = "0" + seconds.value
+  } else {
     document.getElementById("secondsCountdown").innerText = seconds.value;
   }
   document.getElementById("descriptionHeader").innerText = description.value;
