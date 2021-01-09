@@ -7,7 +7,9 @@ var description = document.getElementById("descriptionInput");
 var minutes = document.getElementById("minutes");
 var numberInputs = document.getElementById("numberInputs");
 var seconds = document.getElementById("seconds");
+var secondsCountdown = document.getElementById("secondsCountdown");
 var startActivityButton = document.getElementById("startActivityButton");
+var startButton = document.getElementById("startButton");
 // var timerDisplay = document.getElementById("timerDisplay")
 
 // EVENT LISTENERS
@@ -39,6 +41,8 @@ numberInputs.addEventListener('keydown', function(event) {
 
 startActivityButton.addEventListener("click", startTimer);
 
+startButton.addEventListener("click", startCountDown);
+
 // FUNCTIONS
 function addColor(button, activeClass) {
   button.classList.add(activeClass)
@@ -52,6 +56,26 @@ function startTimer(event) {
   event.preventDefault(event);
   var activity = new Activity(category, description.value, minutes.value, seconds.value)
   checkInputs(activity);
+};
+
+function startCountDown() {
+  var secondsInput = parseInt(seconds.value);
+  var minutesInput = parseInt(minutes.value);
+  var oneSecond = 1;
+  var oneMinute = oneSecond * 60;
+  var totalTime = (secondsInput * oneSecond) + (minutesInput * oneMinute);
+  var timer = setInterval(function() {
+    var displayMinutes = Math.floor(totalTime / 60);
+    var displaySeconds = totalTime % 60;
+    secondsCountdown.innerHTML = displaySeconds;
+    minutesCountdown.innerHTML = displayMinutes;
+    // secondsCountdown.innerHTML = secondsInput;
+    // secondsInput--;
+    totalTime--;
+    if(totalTime < 0){
+      clearInterval(timer);
+    }
+  }, 1000)
 };
 
 function checkInputs(activity) {
