@@ -9,7 +9,7 @@ class Activity {
   }
 
   startTimer() {
-
+    
   }
 
   markComplete() {
