@@ -10,7 +10,6 @@ var seconds = document.getElementById("seconds");
 var secondsCountdown = document.getElementById("secondsCountdown");
 var startActivityButton = document.getElementById("startActivityButton");
 var startButton = document.getElementById("startButton");
-// var timerDisplay = document.getElementById("timerDisplay")
 
 // EVENT LISTENERS
 buttonRow.addEventListener("click", function(event){
@@ -18,10 +17,6 @@ buttonRow.addEventListener("click", function(event){
     addColor(studyButton, "study-button-active");
     removeColor(meditateButton, "meditate-button-active")
     removeColor(exerciseButton, "exercise-button-active")
-  // if (event.target.id === "studyButton") {
-  //   addColor(studyButton, "study-button-active");
-  //   removeColor(meditateButton, "meditate-button-active")
-  //   removeColor(exerciseButton, "exercise-button-active")
   } else if (event.target.id === "meditateButton") {
     addColor(meditateButton, "meditate-button-active")
     removeColor(studyButton, "study-button-active")
@@ -34,18 +29,6 @@ buttonRow.addEventListener("click", function(event){
   event.preventDefault();
   category = event.target.id
 });
-
-//take the entire thing and pass it into a function
-//if it's exercise button remove meditate etc
-//if it's studybutton remove the other two
-
-function activateButton(type) {
-  if(type === studyButton){
-    addColor(studyButton, "study-button-active");
-    removeColor(meditateButton, "meditate-button-active")
-    removeColor(exerciseButton, "exercise-button-active")
-  }
-}
 
 numberInputs.addEventListener('keydown', function(event) {
   if (event.target.id === "minutes" || "seconds") {
@@ -82,12 +65,9 @@ function startCountDown() {
   var totalTime = (secondsInput * oneSecond) + (minutesInput * oneMinute);
   var timer = setInterval(function() {
     var displayMinutes = '00' + Math.floor(totalTime / 60);
-    var displaySeconds = '0' + totalTime % 60;
+    var displaySeconds = '00' + totalTime % 60;
     secondsCountdown.innerHTML = displaySeconds.slice(-2)
     minutesCountdown.innerHTML = displayMinutes.slice(-2);
-    //DO WE EVEN NEED TO DISPLAY DOWN BELOW?? CAN THIS TAKE OVER?
-    //minutesCountdown.innerHTML = displayMinutes;
-    // secondsCountdown.innerHTML = secondsInput;
     totalTime--;
     if(totalTime < 0){
       clearInterval(timer);
@@ -120,16 +100,8 @@ function displayTimer() {
 };
 
 function displayActivityValues() {
-    var staticMinutes = "00" + (minutes.value.toString())
-    document.getElementById("minutesCountdown").innerText = staticMinutes.slice(-2);
-    var staticSeconds = "00" + (seconds.value.toString())
-    document.getElementById("secondsCountdown").innerText = staticSeconds.slice(-2);
-
-  // if (seconds.value < 10 && seconds.value > 0) {
-  //   document.getElementById("secondsCountdown").innerText = "0" + seconds.value
-  // } else {
-  //   document.getElementById("secondsCountdown").innerText = seconds.value;
-  // }
+  document.getElementById("minutesCountdown").innerText = ("00" + minutes.value).slice(-2);
+  document.getElementById("secondsCountdown").innerText = ("00" + seconds.value).slice(-2);
   document.getElementById("descriptionHeader").innerText = description.value;
 };
 
