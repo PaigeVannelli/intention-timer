@@ -132,57 +132,37 @@ function changeTimerColor() {
 };
 
 function logActivity() {
+  var buttonName = "";
+  if (activity.category === "studyButton") {
+    buttonName = "Study";
+  } else if (activity.category === "meditateButton") {
+    buttonName = "Meditate";
+  } else {
+    buttonName = "Exercise"
+  }
+  changeCardInfo(buttonName)
+}
+
+function changeCardInfo(buttonName) {
   event.preventDefault(event)
   if (activity.minutes && activity.seconds) {
-    changeCardDescription(`${activity.minutes} MIN ${activity.seconds} SEC`)
+    changeCardDescription(`${activity.minutes} MIN ${activity.seconds} SEC`, buttonName)
   } else if (activity.seconds && !activity.minutes) {
-    changeCardDescription(`${activity.seconds} SEC`)
+    changeCardDescription(`${activity.seconds} SEC`, buttonName)
   } else if (activity.minutes && !activity.seconds) {
-    changeCardDescription(`${activity.minutes} MIN`)
+    changeCardDescription(`${activity.minutes} MIN`, buttonName)
   }
 }
 
-function changeCardDescription(time) {
+function changeCardDescription(time, buttonName) {
   document.getElementById("pastActivity").innerHTML +=
   `<div class="activity-card">
     <div class="activity-details">
-      <h4>${activity.category}</h4>
-      <p>${time}</p>
+      <div class="activity-card-styles">
+        <h4>${buttonName}</h4>
+        <p>${time}</p>
+      </div>
       <p>${activity.description}</p>
     </div>
-    <div"tiny-box"></div>
   </div>`
 }
-
-  // if (activity.minutes && activity.seconds) {
-  //   document.getElementById("pastActivity").innerHTML +=
-  //   `<div class="activity-card">
-  //     <div class="activity-details">
-  //       <h4>${activity.category}</h4>
-  //       <p>${activity.minutes} MIN ${activity.seconds} SEC</p>
-  //       <p>${activity.description}</p>
-  //     </div>
-  //     <div"tiny-box"></div>
-  //   </div>`
-  // } else if (activity.seconds && !activity.minutes) {
-  //   document.getElementById("pastActivity").innerHTML +=
-  //   `<div class="activity-card">
-  //     <div class="activity-details">
-  //       <h4>${activity.category}</h4>
-  //       <p>${activity.seconds} SEC</p>
-  //       <p>${activity.description}</p>
-  //     </div>
-  //     <div"tiny-box"></div>
-  //   </div>`
-  // } else if (activity.minutes && !activity.seconds) {
-  //   document.getElementById("pastActivity").innerHTML +=
-  //   `<div class="activity-card">
-  //     <div class="activity-details">
-  //       <h4>${activity.category}</h4>
-  //       <p>${activity.minutes} MIN</p>
-  //       <p>${activity.description}</p>
-  //     </div>
-  //     <div"tiny-box"></div>
-  //   </div>`
-  // }
-// }
