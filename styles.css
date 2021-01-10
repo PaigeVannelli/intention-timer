@@ -246,6 +246,16 @@ header {
 }
 
 /* PAST ACTIVITIES BOX */
+
+.top-placeholder {
+  margin-top: 40px;
+}
+
+.past-placeholder {
+  text-align: center;
+  font-size: 1.4em;
+}
+
 .past-activity {
   display: flex;
   flex-direction: column;
