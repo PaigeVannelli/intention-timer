@@ -112,7 +112,7 @@ function displayTimer() {
   removeHidden(document.getElementById("timerDisplay"));
   boxTitle.innerText = "Current Activity";
   displayActivityValues();
-  changeTimerColor();
+  changeTimerColor("startButton");
 };
 
 function displayActivityValues() {
@@ -121,44 +121,57 @@ function displayActivityValues() {
   document.getElementById("descriptionHeader").innerText = description.value;
 };
 
-function changeTimerColor() {
+// function changeTimerColor() {
+//   if(category === "studyButton") {
+//     document.getElementById("startButton").style.borderColor = "#B3FD78";
+//   } else if (category === "meditateButton") {
+//     document.getElementById("startButton").style.borderColor = "#C278FD"
+//   } else if (category === "exerciseButton") {
+//     document.getElementById("startButton").style.borderColor = "#FD8078"
+//   }
+// };
+function changeTimerColor(target) {
   if(category === "studyButton") {
-    document.getElementById("startButton").style.borderColor = "#B3FD78";
+    document.getElementById(target).style.borderColor = "#B3FD78";
   } else if (category === "meditateButton") {
-    document.getElementById("startButton").style.borderColor = "#C278FD"
+    document.getElementById(target).style.borderColor = "#C278FD"
   } else if (category === "exerciseButton") {
-    document.getElementById("startButton").style.borderColor = "#FD8078"
+    document.getElementById(target).style.borderColor = "#FD8078"
   }
 };
 
 function logActivity() {
   var buttonName = "";
+  var cardStyle = "";
   if (activity.category === "studyButton") {
     buttonName = "Study";
+    cardStyle = "study-card-styles";
   } else if (activity.category === "meditateButton") {
     buttonName = "Meditate";
+    cardStyle = "meditate-card-styles"
   } else {
-    buttonName = "Exercise"
+    buttonName = "Exercise";
+    cardStyle = "exercise-card-styles";
   }
-  changeCardInfo(buttonName)
+  changeCardInfo(buttonName, cardStyle)
 }
 
-function changeCardInfo(buttonName) {
+function changeCardInfo(buttonName, cardStyle) {
   event.preventDefault(event)
   if (activity.minutes && activity.seconds) {
-    changeCardDescription(`${activity.minutes} MIN ${activity.seconds} SEC`, buttonName)
+    changeCardDescription(`${activity.minutes} MIN ${activity.seconds} SEC`, buttonName, cardStyle)
   } else if (activity.seconds && !activity.minutes) {
-    changeCardDescription(`${activity.seconds} SEC`, buttonName)
+    changeCardDescription(`${activity.seconds} SEC`, buttonName, cardStyle)
   } else if (activity.minutes && !activity.seconds) {
-    changeCardDescription(`${activity.minutes} MIN`, buttonName)
+    changeCardDescription(`${activity.minutes} MIN`, buttonName, cardStyle)
   }
 }
 
-function changeCardDescription(time, buttonName) {
+function changeCardDescription(time, buttonName, cardStyle) {
   document.getElementById("pastActivity").innerHTML +=
   `<div class="activity-card">
     <div class="activity-details">
-      <div class="activity-card-styles">
+      <div class="activity-card-styles ${cardStyle}">
         <h4>${buttonName}</h4>
         <p>${time}</p>
       </div>
