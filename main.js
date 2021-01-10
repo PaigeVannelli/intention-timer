@@ -155,7 +155,8 @@ function logActivity() {
     buttonName = "Exercise";
     cardStyle = "exercise-card-styles";
   }
-  changeCardInfo(buttonName, cardStyle)
+  changeCardInfo(buttonName, cardStyle);
+  hide(document.getElementById("placeholder"), true)
 }
 
 function changeCardInfo(buttonName, cardStyle) {
