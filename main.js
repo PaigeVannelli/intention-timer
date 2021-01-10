@@ -82,34 +82,45 @@ function startCountDown() {
     if (totalTime < 0) {
       displayComplete();
       clearInterval(timer);
+      displayMotivation();
     }
   }, 1000)
 };
 
+function displayMotivation () {
+  hide(document.getElementById("timer"), true);
+  hide(document.getElementById("motivation"), false)
+}
+
 function displayComplete() {
-  removeHidden(document.getElementById("logActivity"));
+  hide(document.getElementById("logActivity"), false);
   document.getElementById("startButton").innerText = "COMPLETE!";
+  document.getElementById("timer").classList.add("hidden");
 }
 
 function checkInputs(activity) {
   if (activity.category === ""){
-    removeHidden(document.getElementById("categoryError"))
+    hide(document.getElementById("categoryError"), false)
   } else if (activity.description === ""){
-    removeHidden(document.getElementById("descriptionError"))
+    hide(document.getElementById("descriptionError"), false)
   } else if (activity.minutes === "" && activity.seconds === ""){
-    removeHidden(document.getElementById("timeError"))
+    hide(document.getElementById("timeError"), false)
   } else {
     displayTimer();
   }
 };
 
-function removeHidden(element) {
-  element.classList.remove("hidden");
+function hide(element, hidden) {
+  if (hidden) {
+    element.classList.add("hidden");
+  } else {
+    element.classList.remove("hidden");
+  }
 }
 
 function displayTimer() {
   activityForm.classList.add("hidden");
-  removeHidden(document.getElementById("timerDisplay"));
+  hide(document.getElementById("timerDisplay"), false);
   boxTitle.innerText = "Current Activity";
   displayActivityValues();
   changeTimerColor("startButton");
@@ -121,15 +132,6 @@ function displayActivityValues() {
   document.getElementById("descriptionHeader").innerText = description.value;
 };
 
-// function changeTimerColor() {
-//   if(category === "studyButton") {
-//     document.getElementById("startButton").style.borderColor = "#B3FD78";
-//   } else if (category === "meditateButton") {
-//     document.getElementById("startButton").style.borderColor = "#C278FD"
-//   } else if (category === "exerciseButton") {
-//     document.getElementById("startButton").style.borderColor = "#FD8078"
-//   }
-// };
 function changeTimerColor(target) {
   if(category === "studyButton") {
     document.getElementById(target).style.borderColor = "#B3FD78";
