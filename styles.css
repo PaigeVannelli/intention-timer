@@ -159,6 +159,11 @@ header {
   outline: none;
 }
 
+.create-new-button {
+  width: 18em;
+  margin-bottom: 30em;
+}
+
 /* ~~~~~~~~ INPUTS~~~~~~~~~~ */
 
 .input-label{

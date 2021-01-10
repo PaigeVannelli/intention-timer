@@ -5,7 +5,7 @@ var boxTitle = document.getElementById("boxTitle");
 var buttonRow = document.getElementById("buttonRow");
 var category = '';
 var description = document.getElementById("descriptionInput");
-var logActivityButton = document.getElementById("logActivity");
+var logActivityButton = document.getElementById("logActivityButton");
 var minutes = document.getElementById("minutes");
 var numberInputs = document.getElementById("numberInputs");
 var pastActivities = [];
@@ -13,6 +13,7 @@ var seconds = document.getElementById("seconds");
 var secondsCountdown = document.getElementById("secondsCountdown");
 var startActivityButton = document.getElementById("startActivityButton");
 var startButton = document.getElementById("startButton");
+var createNewButton = document.getElementById("createNewButton");
 
 // EVENT LISTENERS
 buttonRow.addEventListener("click", function(event){
@@ -46,6 +47,8 @@ startActivityButton.addEventListener("click", startTimer);
 startButton.addEventListener("click", startCountDown);
 
 logActivityButton.addEventListener("click", logActivity);
+
+createNewButton.addEventListener("click", displayNewActivityForm);
 
 // FUNCTIONS
 function addColor(button, activeClass) {
@@ -93,7 +96,7 @@ function displayMotivation () {
 }
 
 function displayComplete() {
-  hide(document.getElementById("logActivity"), false);
+  hide(document.getElementById("logActivityButton"), false);
   document.getElementById("startButton").innerText = "COMPLETE!";
   document.getElementById("timer").classList.add("hidden");
 }
@@ -156,8 +159,20 @@ function logActivity() {
     cardStyle = "exercise-card-styles";
   }
   changeCardInfo(buttonName, cardStyle);
-  hide(document.getElementById("placeholder"), true)
+  displayCompletedActivity()
 }
+
+function displayCompletedActivity() {
+  hide(document.getElementById("placeholder"), true)
+  hide(document.getElementById("timer"), true)
+  hide(document.getElementById("startButton"), true)
+  hide(document.getElementById("motivation"), true)
+  hide(document.getElementById("logActivityButton"), true)
+  hide(document.getElementById("descriptionHeader"), true)
+  hide(document.getElementById("createNewButton"), false)
+  boxTitle.innerText = "Completed Activity";
+}
+
 
 function changeCardInfo(buttonName, cardStyle) {
   event.preventDefault(event)
@@ -181,4 +196,10 @@ function changeCardDescription(time, buttonName, cardStyle) {
       <p>${activity.description}</p>
     </div>
   </div>`
+}
+
+function displayNewActivityForm() {
+  // hide(document.getElementById("createNewButton"), true);
+  // hide(document.getElementById("activityForm"), false);
+  // hide(document.getElementById("timerDisplay"), true);
 }
