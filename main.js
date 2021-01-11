@@ -1,3 +1,10 @@
+// Refactor List
+
+// 1. move all global variables into functions?
+// 2. Reorder all functions
+// 3. this.category changes border color for both
+// 4. fix form height for each form display - add new class on higher level div
+
 // GLOBAL VARIABLES
 var activity;
 var activityForm = document.getElementById("activityForm");
@@ -16,7 +23,21 @@ var startButton = document.getElementById("startButton");
 var createNewButton = document.getElementById("createNewButton");
 
 // EVENT LISTENERS
-buttonRow.addEventListener("click", function(event){
+buttonRow.addEventListener("click", activateButton)
+
+numberInputs.addEventListener('keydown', preventE)
+
+startActivityButton.addEventListener("click", startTimer);
+
+startButton.addEventListener("click", startCountDown);
+
+logActivityButton.addEventListener("click", logActivity);
+
+createNewButton.addEventListener("click", displayNewActivityForm);
+
+// FUNCTIONS
+
+function activateButton(event) {
   if (event.target.id === "studyButton") {
     addColor(studyButton, "study-button-active");
     removeColor(meditateButton, "meditate-button-active")
@@ -32,25 +53,14 @@ buttonRow.addEventListener("click", function(event){
   }
   event.preventDefault();
   category = event.target.id
-});
+}
 
-numberInputs.addEventListener('keydown', function(event) {
-  if (event.target.id === "minutes" || "seconds") {
-    if (event.key === 'e') {
+function preventE(event) {
+  if ((event.target.id === "minutes" || "seconds") && event.key === 'e') {
     event.preventDefault(event)
-    };
   }
-});
+}
 
-startActivityButton.addEventListener("click", startTimer);
-
-startButton.addEventListener("click", startCountDown);
-
-logActivityButton.addEventListener("click", logActivity);
-
-createNewButton.addEventListener("click", displayNewActivityForm);
-
-// FUNCTIONS
 function addColor(button, activeClass) {
   button.classList.add(activeClass)
 }
@@ -66,28 +76,14 @@ function startTimer(event) {
 };
 
 function startCountDown() {
-  var secondsInput = parseInt(seconds.value - 1);
-  var minutesInput = 0;
-  if (minutes.value === ""){
-    minutesInput = 00;
-  } else {
-    minutesInput = parseInt(minutes.value);
-  }
-  var oneSecond = 1;
-  var oneMinute = oneSecond * 60;
-  var totalTime = (secondsInput * oneSecond) + (minutesInput * oneMinute);
-  var timer = setInterval(function() {
-    var displayMinutes = '00' + Math.floor(totalTime / 60);
-    var displaySeconds = '00' + totalTime % 60;
-    secondsCountdown.innerHTML = displaySeconds.slice(-2)
-    minutesCountdown.innerHTML = displayMinutes.slice(-2);
-    totalTime--;
-    if (totalTime < 0) {
-      displayComplete();
-      clearInterval(timer);
-      displayMotivation();
+  var minutesInput = minutes.value ? parseInt(minutes.value) : 00;
+  var totalTime = (parseInt(seconds.value - 1)) + (minutesInput * 60);
+  activity.startTimer(totalTime);
+  if (activity.completed === true) {
+  //   clearInterval(timer);
+    // displayComplete();
+    // displayMotivation();
     }
-  }, 1000)
 };
 
 function displayMotivation () {
@@ -136,30 +132,27 @@ function displayActivityValues() {
 };
 
 function changeTimerColor(target) {
+  var element = document.getElementById(target)
   if(category === "studyButton") {
-    document.getElementById(target).style.borderColor = "#B3FD78";
+    element.classList.add("start-study-button")
+    // document.getElementById(target).style.borderColor = "#B3FD78";
   } else if (category === "meditateButton") {
-    document.getElementById(target).style.borderColor = "#C278FD"
+    element.classList.add("start-meditate-button")
+    // document.getElementById(target).style.borderColor = "#C278FD"
   } else if (category === "exerciseButton") {
-    document.getElementById(target).style.borderColor = "#FD8078"
+    element.classList.add("start-exercise-button")
+    // document.getElementById(target).style.borderColor = "#FD8078"
   }
 };
 
 function logActivity() {
   var buttonName = "";
   var cardStyle = "";
-  if (activity.category === "studyButton") {
-    buttonName = "Study";
-    cardStyle = "study-card-styles";
-  } else if (activity.category === "meditateButton") {
-    buttonName = "Meditate";
-    cardStyle = "meditate-card-styles"
-  } else {
-    buttonName = "Exercise";
-    cardStyle = "exercise-card-styles";
-  }
-  changeCardInfo(buttonName, cardStyle);
+  activity.markComplete(buttonName, cardStyle);
   displayCompletedActivity()
+  // activity.saveToStorage()
+  // changeCardInfo(buttonName, cardStyle);
+  // displayCompletedActivity()
 }
 
 function displayCompletedActivity() {
