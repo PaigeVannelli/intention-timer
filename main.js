@@ -157,8 +157,9 @@ function logActivity() {
   activity.markComplete(buttonName, cardStyle);
   hide(document.getElementById("placeholder"), true);
   displayCompletedActivity()
-  // pastActivities.push(activity)
-  activity.saveToStorage(pastActivities, activity)
+  pastActivities.push(activity)
+  console.log("test1", pastActivities)
+  activity.saveToStorage(pastActivities)
   // activity.saveToStorage()
   // changeCardInfo(buttonName, cardStyle);
   // displayCompletedActivity()
