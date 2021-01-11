@@ -25,9 +25,7 @@ class Activity {
     }, 1000)
   }
 
-  markComplete() {
-    var buttonName = "";
-    var cardStyle = "";
+  markComplete(buttonName, cardStyle) {
     if (activity.category === "studyButton") {
       buttonName = "Study";
       cardStyle = "study-card-styles";
@@ -39,11 +37,9 @@ class Activity {
       cardStyle = "exercise-card-styles";
     }
     changeCardInfo(buttonName, cardStyle);
-    displayCompletedActivity()
   }
 
   saveToStorage() {
 
   }
-
 }

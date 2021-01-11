@@ -159,6 +159,18 @@ header {
   outline: none;
 }
 
+.start-study-button {
+  border-color: #B3FD78;
+}
+
+.start-meditate-button {
+  border-color: #C278FD;
+}
+
+.start-exercise-button {
+  border-color: #FD8078;
+}
+
 .create-new-button {
   width: 18em;
   margin-bottom: 30em;

@@ -95,14 +95,14 @@ function startCountDown() {
   var minutesInput = minutes.value ? parseInt(minutes.value) : minutesInput = 00;
   var totalTime = (parseInt(seconds.value - 1)) + (minutesInput * 60);
   // console.log(activity.completed)
-  var completed = activity.startTimer(totalTime);
+  activity.startTimer(totalTime);
   // activity.completed = true
   // console.log(activity.completed)
   // if (completed) {
   //   console.log('test test', activity.completed)
   //   displayComplete();
   //   displayMotivation();
-  // }
+}
 
 function completed() {
   console.log(activity)
@@ -131,7 +131,7 @@ function completed() {
     //   displayMotivation();
     // }
   // }, 1000)
-};
+// };
 
 function displayMotivation () {
   hide(document.getElementById("timer"), true);
@@ -179,17 +179,27 @@ function displayActivityValues() {
 };
 
 function changeTimerColor(target) {
+  var element = document.getElementById(target)
   if(category === "studyButton") {
-    document.getElementById(target).style.borderColor = "#B3FD78";
+    element.classList.add("start-study-button")
+    // document.getElementById(target).style.borderColor = "#B3FD78";
   } else if (category === "meditateButton") {
-    document.getElementById(target).style.borderColor = "#C278FD"
+    element.classList.add("start-meditate-button")
+    // document.getElementById(target).style.borderColor = "#C278FD"
   } else if (category === "exerciseButton") {
-    document.getElementById(target).style.borderColor = "#FD8078"
+    element.classList.add("start-exercise-button")
+    // document.getElementById(target).style.borderColor = "#FD8078"
   }
 };
 
 function logActivity() {
-  activity.markComplete()
+  var buttonName = "";
+  var cardStyle = "";
+  activity.markComplete(buttonName, cardStyle);
+  displayCompletedActivity()
+  // activity.saveToStorage()
+  // console.log(buttonName, cardStyle)
+  // changeCardInfo(buttonName, cardStyle);
   // var buttonName = "";
   // var cardStyle = "";
   // if (activity.category === "studyButton") {
