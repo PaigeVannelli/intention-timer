@@ -1,3 +1,10 @@
+// Refactor List
+
+// 1. move all global variables into functions?
+// 2. Reorder all functions
+// 3. this.category changes border color for both
+// 4. fix form height for each form display - add new class on higher level div
+
 // GLOBAL VARIABLES
 var activity;
 var activityForm = document.getElementById("activityForm");
@@ -94,8 +101,15 @@ function startTimer(event) {
 function startCountDown() {
   var minutesInput = minutes.value ? parseInt(minutes.value) : minutesInput = 00;
   var totalTime = (parseInt(seconds.value - 1)) + (minutesInput * 60);
-  // console.log(activity.completed)
+  var timer = setInterval(function() {
   activity.startTimer(totalTime);
+  if (totalTime < 0) {
+    clearInterval(timer);
+    displayComplete();
+    displayMotivation();
+    // this.completed = true;
+    }
+  }, 1000)
   // activity.completed = true
   // console.log(activity.completed)
   // if (completed) {
