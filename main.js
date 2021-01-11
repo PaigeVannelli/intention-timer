@@ -170,7 +170,7 @@ function displayCompletedActivity() {
   hide(timerDisplay, true)
   hide(document.getElementById("logActivityButton"), true)
   hide(document.getElementById("descriptionHeader"), true)
-  hide(document.getElementById("createNewButton"), false)
+  hide(document.getElementById("newActivitySection"), false)
   boxTitle.innerText = "Completed Activity";
 }
 
@@ -200,7 +200,7 @@ function changeCardDescription(time, buttonName, cardStyle) {
 }
 
 function displayNewActivityForm() {
-  hide(document.getElementById("createNewButton"), true);
+  hide(document.getElementById("newActivitySection"), true);
   hide(document.getElementById("activityForm"), false);
   activityForm.reset();
   console.log(activity);
