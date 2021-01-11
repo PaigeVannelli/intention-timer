@@ -21,7 +21,7 @@ var secondsCountdown = document.getElementById("secondsCountdown");
 var startActivityButton = document.getElementById("startActivityButton");
 var startButton = document.getElementById("startButton");
 var createNewButton = document.getElementById("createNewButton");
-
+var timerDisplay = document.getElementById("timerDisplay");
 // EVENT LISTENERS
 buttonRow.addEventListener("click", activateButton)
 
@@ -73,9 +73,15 @@ function startTimer(event) {
   event.preventDefault(event);
   activity = new Activity(category, description.value, minutes.value, seconds.value)
   checkInputs(activity);
+  timerDisplay.reset()
+  hide(document.getElementById("timer"), false);
+  hide(document.getElementById("motivation"), true)
+  hide(document.getElementById("descriptionHeader"), false)
+  document.getElementById("startButton").innerText = "START";
 };
 
 function startCountDown() {
+  event.preventDefault(event);
   var minutesInput = minutes.value ? parseInt(minutes.value) : 00;
   var totalTime = (parseInt(seconds.value - 1)) + (minutesInput * 60);
   activity.startTimer(totalTime);
@@ -119,7 +125,7 @@ function hide(element, hidden) {
 
 function displayTimer() {
   activityForm.classList.add("hidden");
-  hide(document.getElementById("timerDisplay"), false);
+  hide(timerDisplay, false);
   boxTitle.innerText = "Current Activity";
   displayActivityValues();
   changeTimerColor("startButton");
@@ -149,6 +155,7 @@ function logActivity() {
   var buttonName = "";
   var cardStyle = "";
   activity.markComplete(buttonName, cardStyle);
+  hide(document.getElementById("placeholder"), true);
   displayCompletedActivity()
   // activity.saveToStorage()
   // changeCardInfo(buttonName, cardStyle);
@@ -156,10 +163,11 @@ function logActivity() {
 }
 
 function displayCompletedActivity() {
-  hide(document.getElementById("placeholder"), true)
-  hide(document.getElementById("timer"), true)
-  hide(document.getElementById("startButton"), true)
-  hide(document.getElementById("motivation"), true)
+  // hide(document.getElementById("placeholder"), true)
+  // hide(document.getElementById("timer"), true)
+  // hide(document.getElementById("startButton"), true)
+  // hide(document.getElementById("motivation"), true)
+  hide(timerDisplay, true)
   hide(document.getElementById("logActivityButton"), true)
   hide(document.getElementById("descriptionHeader"), true)
   hide(document.getElementById("createNewButton"), false)
@@ -192,7 +200,8 @@ function changeCardDescription(time, buttonName, cardStyle) {
 }
 
 function displayNewActivityForm() {
-  // hide(document.getElementById("createNewButton"), true);
-  // hide(document.getElementById("activityForm"), false);
-  // hide(document.getElementById("timerDisplay"), true);
+  hide(document.getElementById("createNewButton"), true);
+  hide(document.getElementById("activityForm"), false);
+  activityForm.reset();
+  console.log(activity);
 }
