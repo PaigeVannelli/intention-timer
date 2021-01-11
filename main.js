@@ -157,6 +157,9 @@ function logActivity() {
   activity.markComplete(buttonName, cardStyle);
   hide(document.getElementById("placeholder"), true);
   displayCompletedActivity()
+  pastActivities.push(activity)
+  console.log("test1", pastActivities)
+  activity.saveToStorage(pastActivities)
   // activity.saveToStorage()
   // changeCardInfo(buttonName, cardStyle);
   // displayCompletedActivity()
@@ -203,5 +206,4 @@ function displayNewActivityForm() {
   hide(document.getElementById("newActivitySection"), true);
   hide(document.getElementById("activityForm"), false);
   activityForm.reset();
-  console.log(activity);
 }

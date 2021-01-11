@@ -5,7 +5,7 @@ class Activity {
     this.minutes = minutes;
     this.seconds = seconds;
     this.completed = false;
-    this.id = id;
+    this.id = Date.now();
   }
 
   startTimer(totalTime) {
@@ -20,7 +20,7 @@ class Activity {
         displayComplete();
         displayMotivation();
         this.completed = true;
-        console.log(this.completed)
+        // console.log(this.completed)
       }
     }, 1000)
   }
@@ -39,7 +39,24 @@ class Activity {
     changeCardInfo(buttonName, cardStyle);
   }
 
-  saveToStorage() {
+  saveToStorage(pastActivities) {
 
+    // if (!localStorage) {
+      var stringified = JSON.stringify(pastActivities)
+      console.log("test2", pastActivities, stringified)
+      localStorage.setItem("pastActivitesKey", stringified)
+      // console.log("test3", pastActivities)
+      // console.log("test4", localStorage);
+    // } else if (localStorage) {
+    //   localStorage.getItem("pastActivitiesKey")
+    //   JSON.parse("pastActivitesKey")
+    //   pastActivities.push(activity);
+    //   JSON.stringify(pastActivities);
+    //   localStorage.setItem("pastActivitesKey", pastActivities)
+    // }
+    // else {
+    //   // pastActivities.push(JSON.parse)
+    //   localStorage.setItem("pastActivitesKey", JSON.stringify(pastActivities))
+    // }
   }
 }
