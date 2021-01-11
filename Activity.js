@@ -5,7 +5,7 @@ class Activity {
     this.minutes = minutes;
     this.seconds = seconds;
     this.completed = false;
-    this.id = id;
+    this.id = Date.now();
   }
 
   startTimer(totalTime) {
@@ -39,7 +39,23 @@ class Activity {
     changeCardInfo(buttonName, cardStyle);
   }
 
-  saveToStorage() {
-
+  saveToStorage(pastActivities, activity) {
+    //parse past activities
+    //push activity
+    //stringify the whole thing
+    //store
+    if (!localStorage) {
+      localStorage.setItem("pastActivitesKey", JSON.stringify(pastActivities))
+    } else if (localStorage) {
+      localStorage.getItem("pastActivitiesKey")
+      JSON.parse("pastActivitesKey")
+      pastActivities.push(activity);
+      JSON.stringify(pastActivities);
+      localStorage.setItem("pastActivitesKey", pastActivities)
+    }
+    // else {
+    //   // pastActivities.push(JSON.parse)
+    //   localStorage.setItem("pastActivitesKey", JSON.stringify(pastActivities))
+    // }
   }
 }
