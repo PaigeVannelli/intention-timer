@@ -24,31 +24,8 @@ var createNewButton = document.getElementById("createNewButton");
 
 // EVENT LISTENERS
 buttonRow.addEventListener("click", activateButton)
-  // if (event.target.id === "studyButton") {
-  //   addColor(studyButton, "study-button-active");
-  //   removeColor(meditateButton, "meditate-button-active")
-  //   removeColor(exerciseButton, "exercise-button-active")
-  // } else if (event.target.id === "meditateButton") {
-  //   addColor(meditateButton, "meditate-button-active")
-  //   removeColor(studyButton, "study-button-active")
-  //   removeColor(exerciseButton, "exercise-button-active")
-  // } else if (event.target.id === "exerciseButton") {
-  //   addColor(exerciseButton, "exercise-button-active")
-  //   removeColor(studyButton, "study-button-active")
-  //   removeColor(meditateButton, "meditate-button-active")
-  // }
-  // event.preventDefault();
-  // category = event.target.id
-// };
 
-// numberInputs.addEventListener('keydown', function(event) {
 numberInputs.addEventListener('keydown', preventE)
-  // if ((event.target.id === "minutes" || "seconds") && event.key === 'e') {
-  //   // if (event.key === 'e') {
-  //   event.preventDefault(event)
-  //   // };
-  // }
-// });
 
 startActivityButton.addEventListener("click", startTimer);
 
@@ -99,53 +76,15 @@ function startTimer(event) {
 };
 
 function startCountDown() {
-  var minutesInput = minutes.value ? parseInt(minutes.value) : minutesInput = 00;
+  var minutesInput = minutes.value ? parseInt(minutes.value) : 00;
   var totalTime = (parseInt(seconds.value - 1)) + (minutesInput * 60);
-  var timer = setInterval(function() {
   activity.startTimer(totalTime);
-  if (totalTime < 0) {
-    clearInterval(timer);
-    displayComplete();
-    displayMotivation();
-    // this.completed = true;
+  if (activity.completed === true) {
+  //   clearInterval(timer);
+    // displayComplete();
+    // displayMotivation();
     }
-  }, 1000)
-  // activity.completed = true
-  // console.log(activity.completed)
-  // if (completed) {
-  //   console.log('test test', activity.completed)
-  //   displayComplete();
-  //   displayMotivation();
-}
-
-function completed() {
-  console.log(activity)
-  // if (activity.completed) {
-  //   displayComplete();
-  //   displayMotivation();
-  // }
-}
-
-// completed()
-  // var minutesInput = 0;
-  // if (minutes.value === ""){
-  //   minutesInput = 00;
-  // } else {
-  //   minutesInput = parseInt(minutes.value);
-  // }
-  // var timer = setInterval(function() {
-  //   var displayMinutes = '00' + Math.floor(totalTime / 60);
-  //   var displaySeconds = '00' + totalTime % 60;
-  //   secondsCountdown.innerHTML = displaySeconds.slice(-2)
-  //   minutesCountdown.innerHTML = displayMinutes.slice(-2);
-  //   totalTime--;
-    // if (totalTime < 0) {
-    // clearInterval(timer);
-    //   displayComplete();
-    //   displayMotivation();
-    // }
-  // }, 1000)
-// };
+};
 
 function displayMotivation () {
   hide(document.getElementById("timer"), true);
@@ -212,20 +151,6 @@ function logActivity() {
   activity.markComplete(buttonName, cardStyle);
   displayCompletedActivity()
   // activity.saveToStorage()
-  // console.log(buttonName, cardStyle)
-  // changeCardInfo(buttonName, cardStyle);
-  // var buttonName = "";
-  // var cardStyle = "";
-  // if (activity.category === "studyButton") {
-  //   buttonName = "Study";
-  //   cardStyle = "study-card-styles";
-  // } else if (activity.category === "meditateButton") {
-  //   buttonName = "Meditate";
-  //   cardStyle = "meditate-card-styles"
-  // } else {
-  //   buttonName = "Exercise";
-  //   cardStyle = "exercise-card-styles";
-  // }
   // changeCardInfo(buttonName, cardStyle);
   // displayCompletedActivity()
 }

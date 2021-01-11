@@ -9,20 +9,20 @@ class Activity {
   }
 
   startTimer(totalTime) {
-    // var timer = setInterval(function() {
+    var timer = setInterval(function() {
       var displayMinutes = '00' + Math.floor(totalTime / 60);
       var displaySeconds = '00' + totalTime % 60;
       secondsCountdown.innerHTML = displaySeconds.slice(-2)
       minutesCountdown.innerHTML = displayMinutes.slice(-2);
       totalTime--;
-    // this.completed = totalTime === 0
-    //   if (totalTime < 0) {
-    //     clearInterval(timer);
-    //     displayComplete();
-    //     displayMotivation();
-    //     this.completed = true;
-    //   }
-    // }, 1000)
+      if (totalTime < 0) {
+        clearInterval(timer);
+        displayComplete();
+        displayMotivation();
+        this.completed = true;
+        console.log(this.completed)
+      }
+    }, 1000)
   }
 
   markComplete(buttonName, cardStyle) {
