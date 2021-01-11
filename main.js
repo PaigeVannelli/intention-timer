@@ -35,6 +35,8 @@ logActivityButton.addEventListener("click", logActivity);
 
 createNewButton.addEventListener("click", displayNewActivityForm);
 
+window.addEventListener("load", accessLocalStorage)
+
 // FUNCTIONS
 
 function activateButton(event) {
@@ -154,14 +156,24 @@ function changeTimerColor(target) {
 function logActivity() {
   var buttonName = "";
   var cardStyle = "";
-  activity.markComplete(buttonName, cardStyle);
+  // activity.markComplete(buttonName, cardStyle);
+  if (activity.category === "studyButton") {
+    buttonName = "Study";
+    cardStyle = "study-card-styles";
+  } else if (activity.category === "meditateButton") {
+    buttonName = "Meditate";
+    cardStyle = "meditate-card-styles"
+  } else {
+    buttonName = "Exercise";
+    cardStyle = "exercise-card-styles";
+  }
+  changeCardInfo(buttonName, cardStyle);
   hide(document.getElementById("placeholder"), true);
   displayCompletedActivity()
   pastActivities.push(activity)
   console.log("test1", pastActivities)
   activity.saveToStorage(pastActivities)
   // activity.saveToStorage()
-  // changeCardInfo(buttonName, cardStyle);
   // displayCompletedActivity()
 }
 
@@ -206,4 +218,13 @@ function displayNewActivityForm() {
   hide(document.getElementById("newActivitySection"), true);
   hide(document.getElementById("activityForm"), false);
   activityForm.reset();
+}
+
+// console.log(pastActivities)
+function accessLocalStorage() {
+  if (localStorage.length > 0) {
+    var parsed = localStorage.getItem("pastActivitiesKey")
+    var returnToNormal = JSON.parse(parsed)
+    console.log(returnToNormal)
+  }
 }
