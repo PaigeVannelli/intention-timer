@@ -16,7 +16,44 @@ var startButton = document.getElementById("startButton");
 var createNewButton = document.getElementById("createNewButton");
 
 // EVENT LISTENERS
-buttonRow.addEventListener("click", function(event){
+buttonRow.addEventListener("click", activateButton)
+  // if (event.target.id === "studyButton") {
+  //   addColor(studyButton, "study-button-active");
+  //   removeColor(meditateButton, "meditate-button-active")
+  //   removeColor(exerciseButton, "exercise-button-active")
+  // } else if (event.target.id === "meditateButton") {
+  //   addColor(meditateButton, "meditate-button-active")
+  //   removeColor(studyButton, "study-button-active")
+  //   removeColor(exerciseButton, "exercise-button-active")
+  // } else if (event.target.id === "exerciseButton") {
+  //   addColor(exerciseButton, "exercise-button-active")
+  //   removeColor(studyButton, "study-button-active")
+  //   removeColor(meditateButton, "meditate-button-active")
+  // }
+  // event.preventDefault();
+  // category = event.target.id
+// };
+
+// numberInputs.addEventListener('keydown', function(event) {
+numberInputs.addEventListener('keydown', preventE)
+  // if ((event.target.id === "minutes" || "seconds") && event.key === 'e') {
+  //   // if (event.key === 'e') {
+  //   event.preventDefault(event)
+  //   // };
+  // }
+// });
+
+startActivityButton.addEventListener("click", startTimer);
+
+startButton.addEventListener("click", startCountDown);
+
+logActivityButton.addEventListener("click", logActivity);
+
+createNewButton.addEventListener("click", displayNewActivityForm);
+
+// FUNCTIONS
+
+function activateButton(event) {
   if (event.target.id === "studyButton") {
     addColor(studyButton, "study-button-active");
     removeColor(meditateButton, "meditate-button-active")
@@ -32,25 +69,14 @@ buttonRow.addEventListener("click", function(event){
   }
   event.preventDefault();
   category = event.target.id
-});
+}
 
-numberInputs.addEventListener('keydown', function(event) {
-  if (event.target.id === "minutes" || "seconds") {
-    if (event.key === 'e') {
+function preventE(event) {
+  if ((event.target.id === "minutes" || "seconds") && event.key === 'e') {
     event.preventDefault(event)
-    };
   }
-});
+}
 
-startActivityButton.addEventListener("click", startTimer);
-
-startButton.addEventListener("click", startCountDown);
-
-logActivityButton.addEventListener("click", logActivity);
-
-createNewButton.addEventListener("click", displayNewActivityForm);
-
-// FUNCTIONS
 function addColor(button, activeClass) {
   button.classList.add(activeClass)
 }
@@ -66,28 +92,45 @@ function startTimer(event) {
 };
 
 function startCountDown() {
-  var secondsInput = parseInt(seconds.value - 1);
-  var minutesInput = 0;
-  if (minutes.value === ""){
-    minutesInput = 00;
-  } else {
-    minutesInput = parseInt(minutes.value);
-  }
-  var oneSecond = 1;
-  var oneMinute = oneSecond * 60;
-  var totalTime = (secondsInput * oneSecond) + (minutesInput * oneMinute);
-  var timer = setInterval(function() {
-    var displayMinutes = '00' + Math.floor(totalTime / 60);
-    var displaySeconds = '00' + totalTime % 60;
-    secondsCountdown.innerHTML = displaySeconds.slice(-2)
-    minutesCountdown.innerHTML = displayMinutes.slice(-2);
-    totalTime--;
-    if (totalTime < 0) {
-      displayComplete();
-      clearInterval(timer);
-      displayMotivation();
-    }
-  }, 1000)
+  var minutesInput = minutes.value ? parseInt(minutes.value) : minutesInput = 00;
+  var totalTime = (parseInt(seconds.value - 1)) + (minutesInput * 60);
+  // console.log(activity.completed)
+  var completed = activity.startTimer(totalTime);
+  // activity.completed = true
+  // console.log(activity.completed)
+  // if (completed) {
+  //   console.log('test test', activity.completed)
+  //   displayComplete();
+  //   displayMotivation();
+  // }
+
+function completed() {
+  console.log(activity)
+  // if (activity.completed) {
+  //   displayComplete();
+  //   displayMotivation();
+  // }
+}
+
+// completed()
+  // var minutesInput = 0;
+  // if (minutes.value === ""){
+  //   minutesInput = 00;
+  // } else {
+  //   minutesInput = parseInt(minutes.value);
+  // }
+  // var timer = setInterval(function() {
+  //   var displayMinutes = '00' + Math.floor(totalTime / 60);
+  //   var displaySeconds = '00' + totalTime % 60;
+  //   secondsCountdown.innerHTML = displaySeconds.slice(-2)
+  //   minutesCountdown.innerHTML = displayMinutes.slice(-2);
+  //   totalTime--;
+    // if (totalTime < 0) {
+    // clearInterval(timer);
+    //   displayComplete();
+    //   displayMotivation();
+    // }
+  // }, 1000)
 };
 
 function displayMotivation () {
@@ -146,20 +189,21 @@ function changeTimerColor(target) {
 };
 
 function logActivity() {
-  var buttonName = "";
-  var cardStyle = "";
-  if (activity.category === "studyButton") {
-    buttonName = "Study";
-    cardStyle = "study-card-styles";
-  } else if (activity.category === "meditateButton") {
-    buttonName = "Meditate";
-    cardStyle = "meditate-card-styles"
-  } else {
-    buttonName = "Exercise";
-    cardStyle = "exercise-card-styles";
-  }
-  changeCardInfo(buttonName, cardStyle);
-  displayCompletedActivity()
+  activity.markComplete()
+  // var buttonName = "";
+  // var cardStyle = "";
+  // if (activity.category === "studyButton") {
+  //   buttonName = "Study";
+  //   cardStyle = "study-card-styles";
+  // } else if (activity.category === "meditateButton") {
+  //   buttonName = "Meditate";
+  //   cardStyle = "meditate-card-styles"
+  // } else {
+  //   buttonName = "Exercise";
+  //   cardStyle = "exercise-card-styles";
+  // }
+  // changeCardInfo(buttonName, cardStyle);
+  // displayCompletedActivity()
 }
 
 function displayCompletedActivity() {
