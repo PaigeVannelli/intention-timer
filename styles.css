@@ -45,8 +45,13 @@ header {
   margin: 10px 30px 20px 30px;
   border-radius: 10px;
   border-style: solid #46424D;
+  box-shadow: 8px 8px #26222D;
 }
 
+.new-activity-section {
+  display: flex;
+  justify-content: center;
+}
 
 
 /* ~~~~~~BUTTONS~~~~~~~~ */
@@ -174,6 +179,7 @@ header {
 .create-new-button {
   width: 18em;
   margin-bottom: 30em;
+  margin-left: 225px;
 }
 
 /* ~~~~~~~~ INPUTS~~~~~~~~~~ */
@@ -282,7 +288,7 @@ header {
 
 
 .past-title {
-  margin-left: -223px;
+  margin-right: 315px;
 }
 
 .activity-card {
@@ -334,15 +340,3 @@ header {
   background-color: #46424D;
   font-size: 1.2em;
 }
-
-
-
-/* .past-activity > h2 {
-  margin-right: 375px;
-} */
-
-/* .tiny-box{
-  width: 25px;
-  height: 25px;
-  background: red;
-} */

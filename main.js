@@ -16,19 +16,15 @@ var startActivityButton = document.getElementById("startActivityButton");
 var startButton = document.getElementById("startButton");
 var createNewButton = document.getElementById("createNewButton");
 var timerDisplay = document.getElementById("timerDisplay");
+
 // EVENT LISTENERS
+
 buttonRow.addEventListener("click", activateButton)
-
 numberInputs.addEventListener('keydown', preventE)
-
 startActivityButton.addEventListener("click", startTimer);
-
 startButton.addEventListener("click", startCountDown);
-
 logActivityButton.addEventListener("click", logActivity);
-
 createNewButton.addEventListener("click", displayNewActivityForm);
-
 window.addEventListener("load", accessLocalStorage)
 
 // FUNCTIONS
@@ -85,7 +81,6 @@ function checkInputs() {
 };
 
 function displayTimer() {
-  // activityForm.classList.add("hidden");
   hide(document.getElementById("timer"), false);
   hide(document.getElementById("descriptionHeader"), false)
   hide(document.getElementById("motivation"), true)
@@ -104,7 +99,6 @@ function displayActivityValues() {
 };
 
 function changeTimerColor() {
-  // var element = document.getElementById("startButton")
   startButton.classList.remove("start-study-button", "start-meditate-button", "start-exercise-button")
   if(activity.category === "studyButton") {
     startButton.classList.add("start-study-button")
@@ -221,6 +215,7 @@ function changeCardDescription(activity, time, buttonName, cardStyle) {
 function displayNewActivityForm() {
   hide(document.getElementById("newActivitySection"), true);
   hide(document.getElementById("activityForm"), false);
+  boxTitle.innerText = "New Activity"
   activityForm.reset();
 }
 
