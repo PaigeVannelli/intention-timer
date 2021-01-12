@@ -44,7 +44,7 @@ class Activity {
     // if (!localStorage) {
       var stringified = JSON.stringify(pastActivities)
       console.log("test2", pastActivities, stringified)
-      localStorage.setItem("pastActivitesKey", stringified)
+      localStorage.setItem("pastActivitiesKey", stringified)
       // console.log("test3", pastActivities)
       // console.log("test4", localStorage);
     // } else if (localStorage) {
