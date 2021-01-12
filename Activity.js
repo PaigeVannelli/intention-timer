@@ -28,22 +28,7 @@ class Activity {
   }
 
   saveToStorage(pastActivities) {
-
-    // if (!localStorage) {
       var stringified = JSON.stringify(pastActivities)
       localStorage.setItem("pastActivitiesKey", stringified)
-      // console.log("test3", pastActivities)
-      // console.log("test4", localStorage);
-    // } else if (localStorage) {
-    //   localStorage.getItem("pastActivitiesKey")
-    //   JSON.parse("pastActivitesKey")
-    //   pastActivities.push(activity);
-    //   JSON.stringify(pastActivities);
-    //   localStorage.setItem("pastActivitesKey", pastActivities)
-    // }
-    // else {
-    //   // pastActivities.push(JSON.parse)
-    //   localStorage.setItem("pastActivitesKey", JSON.stringify(pastActivities))
-    // }
   }
 }

@@ -1,18 +1,3 @@
-// Refactor List
-
-// 1. move all global variables into functions?
-// 2. Reorder all functions
-// 3. this.category changes border color for both
-// 4. fix form height for each form display - add new class on higher level div
-// 5. if else consitency
-// 6. refactor huge function
-// 7. get rid of remove color - add class
-
-
-// ERRORS
-
-//start button doesn't change color based on new category
-//need to get DOM manipulation out of methods startTimer
 
 // GLOBAL VARIABLES
 var activity;
@@ -132,22 +117,15 @@ function changeTimerColor() {
 
 function startCountDown() {
   event.preventDefault();
-  // var minutesInput
-  // if (minutes.value) {
-  //   minutesInput = parseInt(minutes.value)
-  // } else {
-  //   minutesInput = 00;
-  // }
-  var minutesInput = minutes.value ? parseInt(minutes.value) : 00;
+  var minutesInput
+  if (minutes.value) {
+    minutesInput = parseInt(minutes.value)
+  } else {
+    minutesInput = 00;
+  }
   var totalTime = (parseInt(seconds.value - 1)) + (minutesInput * 60);
   activity.startTimer(totalTime);
   activity.markComplete()
-  console.log(activity)
-  // if (activity.completed === true) {
-  //   clearInterval(timer);
-    // displayComplete();
-    // displayMotivation();
-    // }
 };
 
 function displayMotivation () {
@@ -157,9 +135,8 @@ function displayMotivation () {
 
 function displayComplete() {
   hide(document.getElementById("logActivityButton"), false);
-  document.getElementById("startButton").innerText = "COMPLETE!";
-  // document.getElementById("timer").classList.add("hidden");
   hide(document.getElementById("timer"), true)
+  document.getElementById("startButton").innerText = "COMPLETE!";
 }
 
 function hide(element, hidden) {
@@ -171,21 +148,7 @@ function hide(element, hidden) {
 }
 
 function logActivity() {
-  // var buttonName = "";
-  // var cardStyle = "";
-  // activity.markComplete(buttonName, cardStyle);
-  // if (activity.category === "studyButton") {
-  //   buttonName = "Study";
-  //   cardStyle = "study-card-styles";
-  // } else if (activity.category === "meditateButton") {
-  //   buttonName = "Meditate";
-  //   cardStyle = "meditate-card-styles"
-  // } else {
-  //   buttonName = "Exercise";
-  //   cardStyle = "exercise-card-styles";
-  // }
   createCardStyle(activity)
-  // changeCardInfo(buttonName, cardStyle);
   displayCompletedActivity()
   pastActivities.push(activity)
   activity.saveToStorage(pastActivities)
@@ -219,10 +182,6 @@ function changeCardInfo(activity, buttonName, cardStyle) {
 }
 
 function displayCompletedActivity() {
-  // hide(document.getElementById("placeholder"), true)
-  // hide(document.getElementById("timer"), true)
-  // hide(document.getElementById("startButton"), true)
-  // hide(document.getElementById("motivation"), true)
   hide(document.getElementById("placeholder"), true);
   hide(timerDisplay, true)
   hide(document.getElementById("logActivityButton"), true)
@@ -253,64 +212,10 @@ function displayNewActivityForm() {
 function accessLocalStorage() {
   if (localStorage.length > 0) {
     hide(document.getElementById("placeholder"), true)
-    // var parsed = localStorage.getItem("pastActivitiesKey")
-    // var returnToNormal = JSON.parse(parsed)
     var returnToNormal = JSON.parse(localStorage.getItem("pastActivitiesKey"))
     for(var i = 0; i < returnToNormal.length; i++){
       pastActivities.push(returnToNormal[i]);
-      // activity = returnToNormal[i]
-      // logActivity();
-      //cardLogic(returnToNormal[i]);
       createCardStyle(returnToNormal[i]);
     }
   }
 }
-
-// function cardConstructor(cardInfo) {
-//   var buttonName = "";
-//   var cardStyle = "";
-//   var timeInput = "";
-//   if (cardInfo.category === "studyButton") {
-//     buttonName = "Study";
-//     cardStyle = "study-card-styles";
-//   } else if (cardInfo.category === "meditateButton") {
-//     buttonName = "Meditate";
-//     cardStyle = "meditate-card-styles"
-//   } else {
-//     buttonName = "Exercise";
-//     cardStyle = "exercise-card-styles";
-//   }
-//   if (cardInfo.minutes && cardInfo.seconds) {
-//     timeInput = `${cardInfo.minutes} MIN ${cardInfo.seconds} SEC`
-//   } else if (cardInfo.seconds && !cardInfo.minutes) {
-//     timeInput = `${cardInfo.seconds} SEC`;
-//   } else if (cardInfo.minutes && !cardInfo.seconds) {
-//     timeInput = `${cardInfo.minutes} MIN`;
-//   }
-//   document.getElementById("pastActivity").innerHTML +=
-//   `<div class="activity-card">
-//     <div class="activity-details">
-//       <div class="activity-card-styles ${cardStyle}">
-//         <h4>${buttonName}</h4>
-//         <p>${timeInput}</p>
-//       </div>
-//       <p>${cardInfo.description}</p>
-//     </div>
-//   </div>`
-// }
-
-// function cardLogic(cardInfo) {
-//   var buttonName = "";
-//   var cardStyle = "";
-//   // activity.markComplete(buttonName, cardStyle);
-//   if (cardInfo.category === "studyButton") {
-//     buttonName = "Study";
-//     cardStyle = "study-card-styles";
-//   } else if (cardInfo.category === "meditateButton") {
-//     buttonName = "Meditate";
-//     cardStyle = "meditate-card-styles"
-//   } else {
-//     buttonName = "Exercise";
-//     cardStyle = "exercise-card-styles";
-//   }
-// }
