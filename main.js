@@ -1,11 +1,3 @@
-// Refactor List
-
-// 1. move all global variables into functions?
-// 2. Reorder all functions
-// 3. this.category changes border color for both
-// 4. fix form height for each form display - add new class on higher level div
-// 5. if else consitency
-// 6. refactor huge function
 
 // GLOBAL VARIABLES
 var activity;
@@ -74,40 +66,13 @@ function removeColor(button, activeClass) {
 };
 
 function startTimer(event) {
-  event.preventDefault(event);
+  event.preventDefault();
   activity = new Activity(category, description.value, minutes.value, seconds.value)
-  checkInputs(activity);
+  checkInputs();
   timerDisplay.reset()
-  hide(document.getElementById("timer"), false);
-  hide(document.getElementById("motivation"), true)
-  hide(document.getElementById("descriptionHeader"), false)
-  document.getElementById("startButton").innerText = "START";
 };
 
-function startCountDown() {
-  event.preventDefault(event);
-  var minutesInput = minutes.value ? parseInt(minutes.value) : 00;
-  var totalTime = (parseInt(seconds.value - 1)) + (minutesInput * 60);
-  activity.startTimer(totalTime);
-  if (activity.completed === true) {
-  //   clearInterval(timer);
-    // displayComplete();
-    // displayMotivation();
-    }
-};
-
-function displayMotivation () {
-  hide(document.getElementById("timer"), true);
-  hide(document.getElementById("motivation"), false)
-}
-
-function displayComplete() {
-  hide(document.getElementById("logActivityButton"), false);
-  document.getElementById("startButton").innerText = "COMPLETE!";
-  document.getElementById("timer").classList.add("hidden");
-}
-
-function checkInputs(activity) {
+function checkInputs() {
   if (activity.category === ""){
     hide(document.getElementById("categoryError"), false)
   } else if (activity.description === ""){
@@ -119,20 +84,17 @@ function checkInputs(activity) {
   }
 };
 
-function hide(element, hidden) {
-  if (hidden) {
-    element.classList.add("hidden");
-  } else {
-    element.classList.remove("hidden");
-  }
-}
-
 function displayTimer() {
-  activityForm.classList.add("hidden");
+  // activityForm.classList.add("hidden");
+  hide(document.getElementById("timer"), false);
+  hide(document.getElementById("descriptionHeader"), false)
+  hide(document.getElementById("motivation"), true)
+  hide(document.getElementById("activityForm"), true)
   hide(timerDisplay, false);
+  document.getElementById("startButton").innerText = "START";
   boxTitle.innerText = "Current Activity";
   displayActivityValues();
-  changeTimerColor("startButton");
+  changeTimerColor();
 };
 
 function displayActivityValues() {
@@ -141,24 +103,60 @@ function displayActivityValues() {
   document.getElementById("descriptionHeader").innerText = description.value;
 };
 
-function changeTimerColor(target) {
-  var element = document.getElementById(target)
-  if(category === "studyButton") {
-    element.classList.add("start-study-button")
-    // document.getElementById(target).style.borderColor = "#B3FD78";
-  } else if (category === "meditateButton") {
-    element.classList.add("start-meditate-button")
-    // document.getElementById(target).style.borderColor = "#C278FD"
-  } else if (category === "exerciseButton") {
-    element.classList.add("start-exercise-button")
-    // document.getElementById(target).style.borderColor = "#FD8078"
+function changeTimerColor() {
+  // var element = document.getElementById("startButton")
+  startButton.classList.remove("start-study-button", "start-meditate-button", "start-exercise-button")
+  if(activity.category === "studyButton") {
+    startButton.classList.add("start-study-button")
+  } else if (activity.category === "meditateButton") {
+    startButton.classList.add("start-meditate-button")
+  } else if (activity.category === "exerciseButton") {
+    startButton.classList.add("start-exercise-button")
   }
 };
 
+function startCountDown() {
+  event.preventDefault();
+  var minutesInput
+  if (minutes.value) {
+    minutesInput = parseInt(minutes.value)
+  } else {
+    minutesInput = 00;
+  }
+  var totalTime = (parseInt(seconds.value - 1)) + (minutesInput * 60);
+  activity.startTimer(totalTime);
+  activity.markComplete()
+};
+
+function displayMotivation () {
+  hide(document.getElementById("timer"), true);
+  hide(document.getElementById("motivation"), false)
+}
+
+function displayComplete() {
+  hide(document.getElementById("logActivityButton"), false);
+  hide(document.getElementById("timer"), true)
+  document.getElementById("startButton").innerText = "COMPLETE!";
+}
+
+function hide(element, hidden) {
+  if (hidden) {
+    element.classList.add("hidden");
+  } else {
+    element.classList.remove("hidden");
+  }
+}
+
 function logActivity() {
+  createCardStyle(activity)
+  displayCompletedActivity()
+  pastActivities.push(activity)
+  activity.saveToStorage(pastActivities)
+}
+
+function createCardStyle(activity) {
   var buttonName = "";
   var cardStyle = "";
-  // activity.markComplete(buttonName, cardStyle);
   if (activity.category === "studyButton") {
     buttonName = "Study";
     cardStyle = "study-card-styles";
@@ -169,37 +167,22 @@ function logActivity() {
     buttonName = "Exercise";
     cardStyle = "exercise-card-styles";
   }
-  changeCardInfo(buttonName, cardStyle);
-  hide(document.getElementById("placeholder"), true);
-  displayCompletedActivity()
-  pastActivities.push(activity)
-  console.log("test1", pastActivities)
-  activity.saveToStorage(pastActivities)
-  // activity.saveToStorage()
-  // displayCompletedActivity()
+  changeCardInfo(activity, buttonName, cardStyle);
 }
 
-// function cardLogic(cardInfo) {
-//   var buttonName = "";
-//   var cardStyle = "";
-//   // activity.markComplete(buttonName, cardStyle);
-//   if (cardInfo.category === "studyButton") {
-//     buttonName = "Study";
-//     cardStyle = "study-card-styles";
-//   } else if (cardInfo.category === "meditateButton") {
-//     buttonName = "Meditate";
-//     cardStyle = "meditate-card-styles"
-//   } else {
-//     buttonName = "Exercise";
-//     cardStyle = "exercise-card-styles";
-//   }
-// }
+function changeCardInfo(activity, buttonName, cardStyle) {
+  event.preventDefault()
+  if (activity.minutes && activity.seconds) {
+    changeCardDescription(activity, `${activity.minutes} MIN ${activity.seconds} SEC`, buttonName, cardStyle)
+  } else if (activity.seconds && !activity.minutes) {
+    changeCardDescription(activity, `${activity.seconds} SEC`, buttonName, cardStyle)
+  } else if (activity.minutes && !activity.seconds) {
+    changeCardDescription(activity, `${activity.minutes} MIN`, buttonName, cardStyle)
+  }
+}
 
 function displayCompletedActivity() {
-  // hide(document.getElementById("placeholder"), true)
-  // hide(document.getElementById("timer"), true)
-  // hide(document.getElementById("startButton"), true)
-  // hide(document.getElementById("motivation"), true)
+  hide(document.getElementById("placeholder"), true);
   hide(timerDisplay, true)
   hide(document.getElementById("logActivityButton"), true)
   hide(document.getElementById("descriptionHeader"), true)
@@ -207,19 +190,7 @@ function displayCompletedActivity() {
   boxTitle.innerText = "Completed Activity";
 }
 
-
-function changeCardInfo(buttonName, cardStyle) {
-  event.preventDefault(event)
-  if (activity.minutes && activity.seconds) {
-    changeCardDescription(`${activity.minutes} MIN ${activity.seconds} SEC`, buttonName, cardStyle)
-  } else if (activity.seconds && !activity.minutes) {
-    changeCardDescription(`${activity.seconds} SEC`, buttonName, cardStyle)
-  } else if (activity.minutes && !activity.seconds) {
-    changeCardDescription(`${activity.minutes} MIN`, buttonName, cardStyle)
-  }
-}
-
-function changeCardDescription(time, buttonName, cardStyle) {
+function changeCardDescription(activity, time, buttonName, cardStyle) {
   document.getElementById("pastActivity").innerHTML +=
   `<div class="activity-card">
     <div class="activity-details">
@@ -238,49 +209,13 @@ function displayNewActivityForm() {
   activityForm.reset();
 }
 
-// console.log(pastActivities)
 function accessLocalStorage() {
   if (localStorage.length > 0) {
     hide(document.getElementById("placeholder"), true)
-    var parsed = localStorage.getItem("pastActivitiesKey")
-    var returnToNormal = JSON.parse(parsed)
+    var returnToNormal = JSON.parse(localStorage.getItem("pastActivitiesKey"))
     for(var i = 0; i < returnToNormal.length; i++){
       pastActivities.push(returnToNormal[i]);
-      //cardLogic(returnToNormal[i]);
-      cardConstructor(returnToNormal[i]);
+      createCardStyle(returnToNormal[i]);
     }
   }
-}
-
-function cardConstructor(cardInfo) {
-  var buttonName = "";
-  var cardStyle = "";
-  var timeInput = "";
-  if (cardInfo.category === "studyButton") {
-    buttonName = "Study";
-    cardStyle = "study-card-styles";
-  } else if (cardInfo.category === "meditateButton") {
-    buttonName = "Meditate";
-    cardStyle = "meditate-card-styles"
-  } else {
-    buttonName = "Exercise";
-    cardStyle = "exercise-card-styles";
-  }
-  if (cardInfo.minutes && cardInfo.seconds) {
-    timeInput = `${cardInfo.minutes} MIN ${cardInfo.seconds} SEC`
-  } else if (cardInfo.seconds && !cardInfo.minutes) {
-    timeInput = `${cardInfo.seconds} SEC`;
-  } else if (cardInfo.minutes && !cardInfo.seconds) {
-    timeInput = `${cardInfo.minutes} MIN`;
-  }
-  document.getElementById("pastActivity").innerHTML +=
-  `<div class="activity-card">
-    <div class="activity-details">
-      <div class="activity-card-styles ${cardStyle}">
-        <h4>${buttonName}</h4>
-        <p>${timeInput}</p>
-      </div>
-      <p>${cardInfo.description}</p>
-    </div>
-  </div>`
 }

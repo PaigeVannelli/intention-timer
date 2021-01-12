@@ -19,44 +19,16 @@ class Activity {
         clearInterval(timer);
         displayComplete();
         displayMotivation();
-        this.completed = true;
-        // console.log(this.completed)
       }
     }, 1000)
   }
 
-  markComplete(buttonName, cardStyle) {
-    if (activity.category === "studyButton") {
-      buttonName = "Study";
-      cardStyle = "study-card-styles";
-    } else if (activity.category === "meditateButton") {
-      buttonName = "Meditate";
-      cardStyle = "meditate-card-styles"
-    } else {
-      buttonName = "Exercise";
-      cardStyle = "exercise-card-styles";
-    }
-    changeCardInfo(buttonName, cardStyle);
+  markComplete() {
+      this.completed = true;
   }
 
   saveToStorage(pastActivities) {
-
-    // if (!localStorage) {
       var stringified = JSON.stringify(pastActivities)
-      console.log("test2", pastActivities, stringified)
       localStorage.setItem("pastActivitiesKey", stringified)
-      // console.log("test3", pastActivities)
-      // console.log("test4", localStorage);
-    // } else if (localStorage) {
-    //   localStorage.getItem("pastActivitiesKey")
-    //   JSON.parse("pastActivitesKey")
-    //   pastActivities.push(activity);
-    //   JSON.stringify(pastActivities);
-    //   localStorage.setItem("pastActivitesKey", pastActivities)
-    // }
-    // else {
-    //   // pastActivities.push(JSON.parse)
-    //   localStorage.setItem("pastActivitesKey", JSON.stringify(pastActivities))
-    // }
   }
 }
