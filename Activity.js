@@ -8,19 +8,8 @@ class Activity {
     this.id = Date.now();
   }
 
-  startTimer(totalTime) {
-    var timer = setInterval(function() {
-      var displayMinutes = '00' + Math.floor(totalTime / 60);
-      var displaySeconds = '00' + totalTime % 60;
-      secondsCountdown.innerHTML = displaySeconds.slice(-2)
-      minutesCountdown.innerHTML = displayMinutes.slice(-2);
-      totalTime--;
-      if (totalTime < 0) {
-        clearInterval(timer);
-        displayComplete();
-        displayMotivation();
-      }
-    }, 1000)
+  startTimer() {
+
   }
 
   markComplete() {
