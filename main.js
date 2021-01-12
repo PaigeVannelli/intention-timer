@@ -4,6 +4,8 @@
 // 2. Reorder all functions
 // 3. this.category changes border color for both
 // 4. fix form height for each form display - add new class on higher level div
+// 5. if else consitency
+// 6. refactor huge function
 
 // GLOBAL VARIABLES
 var activity;
@@ -177,6 +179,22 @@ function logActivity() {
   // displayCompletedActivity()
 }
 
+// function cardLogic(cardInfo) {
+//   var buttonName = "";
+//   var cardStyle = "";
+//   // activity.markComplete(buttonName, cardStyle);
+//   if (cardInfo.category === "studyButton") {
+//     buttonName = "Study";
+//     cardStyle = "study-card-styles";
+//   } else if (cardInfo.category === "meditateButton") {
+//     buttonName = "Meditate";
+//     cardStyle = "meditate-card-styles"
+//   } else {
+//     buttonName = "Exercise";
+//     cardStyle = "exercise-card-styles";
+//   }
+// }
+
 function displayCompletedActivity() {
   // hide(document.getElementById("placeholder"), true)
   // hide(document.getElementById("timer"), true)
@@ -223,8 +241,46 @@ function displayNewActivityForm() {
 // console.log(pastActivities)
 function accessLocalStorage() {
   if (localStorage.length > 0) {
+    hide(document.getElementById("placeholder"), true)
     var parsed = localStorage.getItem("pastActivitiesKey")
     var returnToNormal = JSON.parse(parsed)
-    console.log(returnToNormal)
+    for(var i = 0; i < returnToNormal.length; i++){
+      pastActivities.push(returnToNormal[i]);
+      //cardLogic(returnToNormal[i]);
+      cardConstructor(returnToNormal[i]);
+    }
   }
+}
+
+function cardConstructor(cardInfo) {
+  var buttonName = "";
+  var cardStyle = "";
+  var timeInput = "";
+  if (cardInfo.category === "studyButton") {
+    buttonName = "Study";
+    cardStyle = "study-card-styles";
+  } else if (cardInfo.category === "meditateButton") {
+    buttonName = "Meditate";
+    cardStyle = "meditate-card-styles"
+  } else {
+    buttonName = "Exercise";
+    cardStyle = "exercise-card-styles";
+  }
+  if (cardInfo.minutes && cardInfo.seconds) {
+    timeInput = `${cardInfo.minutes} MIN ${cardInfo.seconds} SEC`
+  } else if (cardInfo.seconds && !cardInfo.minutes) {
+    timeInput = `${cardInfo.seconds} SEC`;
+  } else if (cardInfo.minutes && !cardInfo.seconds) {
+    timeInput = `${cardInfo.minutes} MIN`;
+  }
+  document.getElementById("pastActivity").innerHTML +=
+  `<div class="activity-card">
+    <div class="activity-details">
+      <div class="activity-card-styles ${cardStyle}">
+        <h4>${buttonName}</h4>
+        <p>${timeInput}</p>
+      </div>
+      <p>${cardInfo.description}</p>
+    </div>
+  </div>`
 }
